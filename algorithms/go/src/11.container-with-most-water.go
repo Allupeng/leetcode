@@ -6,6 +6,8 @@ description:
 	Return the maximum amount of water a container can store.
 	Notice that you may not slant the container.
 **/
+//package src
+
 func maxArea(height []int) int {
 	left, right := 0, len(height)-1
 	result := -1
