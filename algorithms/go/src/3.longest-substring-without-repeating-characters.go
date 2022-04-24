@@ -58,7 +58,7 @@
 
 func lengthOfLongestSubstring(s string) int {
 	//滑动窗口思想,滑动窗口的右边界不断的向右扩展,如果有重复的字符,左边界向右扩展,缩小滑动窗口.
-	//位图思想
+	//采用位图思想
 	if len(s) == 0 {
 		return 0
 	}
