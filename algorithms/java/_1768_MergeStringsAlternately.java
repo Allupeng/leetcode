@@ -1,4 +1,4 @@
-public class _1768_Merge_Strings_Alternately {
+public class _1768_MergeStringsAlternately {
     /**
      * 3 situation
      * if word1.len == word2.len, merge alternately

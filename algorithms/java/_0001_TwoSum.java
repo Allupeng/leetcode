@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class _0001_Two_Sum {
+public class _0001_TwoSum {
     /**
      * find two value sum = target
      * if find

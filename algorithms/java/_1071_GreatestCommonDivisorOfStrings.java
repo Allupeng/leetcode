@@ -1,4 +1,4 @@
-public class _1071_Greatest_Common_Divisor_of_Strings {
+public class _1071_GreatestCommonDivisorOfStrings {
     class Solution {
         public String gcdOfStrings(String str1, String str2) {
             int minLen = Math.min(str1.length(), str2.length());

@@ -54,7 +54,7 @@
  */
 
 // @lc code=start
-public class _0035_search_insert_position {
+public class _0035_SearchInsertPosition {
     class Solution {
         public int searchInsert(int[] nums, int target) {
             int lo = 0;

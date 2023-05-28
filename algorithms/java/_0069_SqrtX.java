@@ -50,7 +50,7 @@
  */
 
 // @lc code=start
-public class _0069_sqrt_x{
+public class _0069_SqrtX{
         class Solution {
         public int mySqrt(int x) {
             if (x == 0){

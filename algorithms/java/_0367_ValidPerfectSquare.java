@@ -48,7 +48,7 @@
  * 
  */
 
-public class _0367_valid_perfect_square{
+public class _0367_ValidPerfectSquare{
 // @lc code=start
     class Solution {
         public boolean isPerfectSquare(int num) {
