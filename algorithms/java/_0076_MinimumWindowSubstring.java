@@ -63,11 +63,7 @@
  */
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class _0076_MinimumWindowSubstring{
 // @lc code=start
