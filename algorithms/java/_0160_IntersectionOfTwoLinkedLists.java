@@ -109,7 +109,7 @@
  * only O(1) memory?
  */
 
-public class _160_IntersectionOfTwoLinkedLists {
+public class _0160_IntersectionOfTwoLinkedLists {
     public class ListNode {
         int val;
         ListNode next;
