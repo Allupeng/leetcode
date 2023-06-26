@@ -65,7 +65,6 @@ public class _0454_4SumIi {
         public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
             int times = 0;
             Map<Integer, Integer> sumAPlusBMap = new HashMap<>();
-            int n = nums1.length;
             for(int i : nums1){
                 for(int j : nums2){
                     int sumAPlusB = i + j;
