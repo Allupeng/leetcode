@@ -1,0 +1,93 @@
+/*
+ * @lc app=leetcode.cn id=236 lang=java
+ *
+ * [236] Lowest Common Ancestor of a Binary Tree
+ *
+ * https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/
+ *
+ * algorithms
+ * Medium (69.73%)
+ * Likes:    2323
+ * Dislikes: 0
+ * Total Accepted:    551.8K
+ * Total Submissions: 791.2K
+ * Testcase Example:  '[3,5,1,6,2,0,8,null,null,7,4]\n5\n1'
+ *
+ * Given a binary tree, find the lowest common ancestor (LCA) of two given
+ * nodes in the tree.
+ * 
+ * According to the definition of LCA on Wikipedia: “The lowest common ancestor
+ * is defined between two nodes p and q as the lowest node in T that has both p
+ * and q as descendants (where we allow a node to be a descendant of
+ * itself).”
+ * 
+ * 
+ * Example 1:
+ * 
+ * 
+ * Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+ * Output: 3
+ * Explanation: The LCA of nodes 5 and 1 is 3.
+ * 
+ * 
+ * Example 2:
+ * 
+ * 
+ * Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+ * Output: 5
+ * Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant
+ * of itself according to the LCA definition.
+ * 
+ * 
+ * Example 3:
+ * 
+ * 
+ * Input: root = [1,2], p = 1, q = 2
+ * Output: 1
+ * 
+ * 
+ * 
+ * Constraints:
+ * 
+ * 
+ * The number of nodes in the tree is in the range [2, 10^5].
+ * -10^9 <= Node.val <= 10^9
+ * All Node.val are unique.
+ * p != q
+ * p and q will exist in the tree.
+ * 
+ * 
+ */
+
+public class _0236_LowestCommonAncestorOfABinaryTree {
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+        TreeNode(int x) { val = x; }
+    }
+// @lc code=start
+    class Solution {
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            // 如果找到了 p、q结点直接返回
+            if (root == q || root == p || root == null){
+                return root;
+            }
+            TreeNode left = lowestCommonAncestor(root.left, p, q);
+            TreeNode right = lowestCommonAncestor(root.right, p, q);
+            // 如果p、q不为null 代表root为公共结点
+            if (left != null && right != null){
+                return root;
+            }
+            if (left == null && right != null){
+                return right;
+            }else if (left != null && right == null){
+                return left;
+            }else {
+                return null;
+            }
+        }
+    }
+// @lc code=end
+
+}
