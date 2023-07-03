@@ -63,11 +63,49 @@
  * 
  */
 
-// @lc code=start
-class Solution {
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
+public class _0039_CombinationSum {
+
+// @lc code=start
+    class Solution {
+        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+            List<List<Integer>> result = new ArrayList<>();
+            Arrays.sort(candidates);
+            combinations(candidates, 0, 0, target, new ArrayList<>(), result);
+            return result;
+        }
+
+        private void combinations(int[] candidates, int curSum,int startIndex , int target, List<Integer> tmp, List<List<Integer>> result){
+            if (curSum == target){
+                result.add(new ArrayList<>(tmp));
+                return;
+            }
+            for (int i = startIndex; i < candidates.length; i++){
+                int candidate = candidates[i];
+                if (curSum + candidate > target){
+                    break;
+                }
+                tmp.add(candidate);
+                combinations(candidates, curSum + candidate, i, target, tmp, result);
+                tmp.remove(tmp.size() - 1);
+            }
+        }
+    }
+// @lc code=end
+
+    @Test
+    public void test(){
+        int[] candidates = new int[]{2,3,6,7};
+        int target = 7;
+        Solution solution = new Solution();
+        List<List<Integer>> lists = solution.combinationSum(candidates, target);
+        System.out.println(lists);
     }
 }
-// @lc code=end
 
