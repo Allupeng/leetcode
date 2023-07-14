@@ -56,11 +56,31 @@
  * 
  */
 
-// @lc code=start
-class Solution {
-    public int eraseOverlapIntervals(int[][] intervals) {
+import java.util.Arrays;
+import java.util.Comparator;
 
+public class _0435_NonOverlappingIntervals {
+// @lc code=start
+    class Solution {
+        public int eraseOverlapIntervals(int[][] intervals) {
+            if (intervals.length == 1 || intervals.length == 0){
+                return 0;
+            }
+            // 初始0为非交叉区间个数
+            int nonOverlapIntervals = 1;
+            Arrays.sort(intervals, Comparator.comparingInt(o -> o[1]));
+            int end = intervals[0][1];
+            for (int i = 1; i < intervals.length; i++){
+                // 记录非交叉区间的个数
+                if (end <= intervals[i][0]){
+                    end = intervals[i][1];
+                    nonOverlapIntervals++;
+                }
+            }
+            // 要移除个数等于非交叉区间个数
+            return intervals.length - nonOverlapIntervals;
+        }
     }
-}
 // @lc code=end
+}
 

@@ -69,11 +69,31 @@
  * 
  */
 
-// @lc code=start
-class Solution {
-    public int findMinArrowShots(int[][] points) {
+import java.util.Arrays;
+import java.util.Comparator;
 
+public class _0452_MinimumNumberOfArrowsToBurstBalloons {
+// @lc code=start
+    class Solution {
+        public int findMinArrowShots(int[][] points) {
+            if (points.length == 0){
+                return 0;
+            }
+            // 本质上这题是求交叉区间的数量
+            Arrays.sort(points, Comparator.comparingInt(o -> o[0]));
+            int result = 1;
+            for (int i = 1; i < points.length; i++){
+                int[] firstBalloon = points[i - 1];
+                int[] secondBalloon = points[i];
+                if (secondBalloon[0] > firstBalloon[1]){
+                    result++;
+                }else {
+                    points[i][1] = Math.min(firstBalloon[1], secondBalloon[1]);
+                }
+            }
+            return result;
+        }
     }
-}
 // @lc code=end
 
+}

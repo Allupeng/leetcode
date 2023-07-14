@@ -50,11 +50,50 @@
  * 
  */
 
-// @lc code=start
-class Solution {
-    public int monotoneIncreasingDigits(int n) {
+import java.util.ArrayList;
+import java.util.List;
 
+public class _0738_MonotoneIncreasingDigits {
+// @lc code=start
+    class Solution {
+        public int monotoneIncreasingDigits(int n) {
+            int[] digits = splitN(n);
+            // 3 2 2 -> 3 1 9 -> 299
+            for (int i = digits.length - 1; i > 0; i--){
+                if (digits[i] > digits[i - 1]){
+                    digits[i - 1]--;
+                    digits[i] = 9;
+                }
+            }
+            return buildN(digits);
+        }
+
+        private int buildN(int[] digits){
+            if (digits.length == 1){
+                return digits[0];
+            }
+            int digit = digits[digits.length - 1];
+            int time = 10;
+            for (int i = digits.length - 2; i >= 0; i--){
+                digit += time * digits[i];
+                time *= 10;
+            }
+            return digit;
+        }
+
+        private int[] splitN(int n){
+            List<Integer> digits = new ArrayList<>();
+            while(n != 0){
+                digits.add(n % 10);
+                n = n / 10;
+            }
+            int[] digitsArray = new int[digits.size()];
+            for (int i = digits.size() - 1; i >= 0; i--){
+                digitsArray[i] = digits.get(i);
+            }
+            return digitsArray;
+        }
     }
-}
 // @lc code=end
+}
 
