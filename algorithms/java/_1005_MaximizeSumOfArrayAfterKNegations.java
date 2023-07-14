@@ -62,11 +62,36 @@
  * 
  */
 
-// @lc code=start
-class Solution {
-    public int largestSumAfterKNegations(int[] nums, int k) {
+import java.util.Arrays;
 
+public class _1005_MaximizeSumOfArrayAfterKNegations {
+// @lc code=start
+    class Solution {
+        public int largestSumAfterKNegations(int[] nums, int k) {
+            int sum = 0;
+            Arrays.sort(nums);
+            int negatives = 0;
+            for (int num : nums){
+                if (num < 0) negatives++;
+            }
+            int index = 0;
+            while (negatives > 0 && k > 0){
+                nums[index] = -nums[index];
+                index++;
+                negatives--;
+                k--;
+            }
+            Arrays.sort(nums);
+            if (k > 0){
+                k = k % 2;
+                if (k == 1){
+                    nums[0] = -nums[0];
+                }
+            }
+            for (int num : nums) sum += num;
+            return sum;
+        }
     }
-}
 // @lc code=end
+}
 
