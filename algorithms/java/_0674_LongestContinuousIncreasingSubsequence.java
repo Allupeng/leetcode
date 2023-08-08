@@ -60,7 +60,7 @@ public class _0674_LongestContinuousIncreasingSubsequence {
 // @lc code=start
     class Solution {
         public int findLengthOfLCIS(int[] nums) {
-            // dp[j]代表 nums[0...j]时的最长连续递增序列长度
+            //  dp[i] 表示以第 i 个元素结尾的最长连续递增子序列的长度
             int[] dp = new int[nums.length];
             Arrays.fill(dp, 1);
             int result = 1;
