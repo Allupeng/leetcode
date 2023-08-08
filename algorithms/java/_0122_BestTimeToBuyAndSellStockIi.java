@@ -64,24 +64,83 @@
  * 
  */
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 public class _0122_BestTimeToBuyAndSellStockIi {
 // @lc code=start
     class Solution {
         public int maxProfit(int[] prices) {
-            // a profit must buy on a day and sell on a day.
-            int profits = 0;
-            if (prices.length < 2){
-                // can buy but can't sell
+            if (prices.length == 0){
                 return 0;
             }
+            // 两种状态
+            // 0 持有股票 (前一天或者当天买入)
+            // 1 卖出股票（前一天卖出或者当天卖出）
+            int[][] dp =  new int[prices.length][2];
+            dp[0][0] = -prices[0];
+            dp[0][1] = 0;
             for (int i = 1; i < prices.length; i++){
-                if (prices[i] - prices[i - 1] > 0){
-                    profits += prices[i] - prices[i - 1];
-                }
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] - prices[i]);
+                dp[i][1] = Math.max(dp[i - 1][0] + prices[i], dp[i - 1][1]);
             }
-            return profits;
+            return Math.max(dp[prices.length - 1][1], dp[prices.length - 1][0]);
         }
     }
 // @lc code=end
+
+    // greedy algorithm
+    private int maxProfit(int[] prices) {
+        // a profit must buy on a day and sell on a day.
+        int profits = 0;
+        if (prices.length < 2){
+            // can buy but can't sell
+            return 0;
+        }
+        for (int i = 1; i < prices.length; i++){
+            if (prices[i] - prices[i - 1] > 0){
+                profits += prices[i] - prices[i - 1];
+            }
+        }
+        return profits;
+    }
+
+    @Test
+    public void testMaxProfit() {
+        Solution solution = new Solution();
+
+        // Test case 1: Empty prices array
+        int[] prices1 = {};
+        assertEquals(0, solution.maxProfit(prices1));
+
+        // Test case 2: One price
+        int[] prices2 = {1};
+        assertEquals(0, solution.maxProfit(prices2));
+
+        // Test case 3: Two prices
+        int[] prices3 = {1, 2};
+        assertEquals(1, solution.maxProfit(prices3));
+
+        // Test case 4: Three prices
+        int[] prices4 = {3, 2, 1};
+        assertEquals(0, solution.maxProfit(prices4));
+
+        // Test case 5: Four prices
+        int[] prices5 = {3, 3, 5, 0, 0, 3, 1, 4};
+        assertEquals(8, solution.maxProfit(prices5));
+
+        // Test case 6: Five prices
+        int[] prices6 = {1, 2, 3, 4, 5};
+        assertEquals(4, solution.maxProfit(prices6));
+
+        // Test case 7: Six prices
+        int[] prices7 = {7, 6, 4, 3, 1};
+        assertEquals(0, solution.maxProfit(prices7));
+
+        // Test case 8: Seven prices
+        int[] prices8 = {6, 1, 3, 2, 4, 7};
+        assertEquals(7, solution.maxProfit(prices8));
+    }
 }
 
