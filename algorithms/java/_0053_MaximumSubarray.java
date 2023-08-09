@@ -62,19 +62,35 @@ public class _0053_MaximumSubarray {
             if (nums.length == 0){
                 return 0;
             }
-            int maxSubArray = nums[0];
-            int curValue = nums[0];
+            //dp[j] 代表以j结尾的nums[0...j]的最大子序和
+            int[] dp = new int[nums.length];
+            dp[0] = nums[0];
+            int result = nums[0];
             for (int i = 1; i < nums.length; i++){
-                if (curValue < 0){
-                    curValue = nums[i];
-                }else {
-                    curValue += nums[i];
-                }
-                maxSubArray = Math.max(maxSubArray, curValue);
+                dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
+                result = Math.max(result, dp[i]);
             }
-            return maxSubArray;
+            return result;
         }
     }
 // @lc code=end
+
+    // 贪心算法
+    private int maxSubArrayByGreedyAlgorithm(int[] nums) {
+        if (nums.length == 0){
+            return 0;
+        }
+        int maxSubArray = nums[0];
+        int curValue = nums[0];
+        for (int i = 1; i < nums.length; i++){
+            if (curValue < 0){
+                curValue = nums[i];
+            }else {
+                curValue += nums[i];
+            }
+            maxSubArray = Math.max(maxSubArray, curValue);
+        }
+        return maxSubArray;
+    }
 }
 
