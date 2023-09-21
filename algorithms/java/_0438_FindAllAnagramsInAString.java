@@ -52,11 +52,46 @@
  * 
  */
 
-// @lc code=start
-class Solution {
-    public List<Integer> findAnagrams(String s, String p) {
+import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class _0438_FindAllAnagramsInAString {
+// @lc code=start
+    class Solution {
+        public List<Integer> findAnagrams(String s, String p) {
+            List<Integer> result = new ArrayList<>();
+            int[] need = new int[26];
+            int[] window = new int[26];
+            for (char pCh : p.toCharArray()){
+                need[pCh - 'a']++;
+            }
+            int left = 0, right = 0;
+            while(right < s.length()){
+                window[s.charAt(right) - 'a']++;
+                while (right - left + 1 > p.length()){
+                    window[s.charAt(left) - 'a']--;
+                    left++;
+                }
+                if (((right - left + 1) == p.length()) && Arrays.equals(need, window)){
+                    result.add(left);
+                }
+                right++;
+            }
+            return result;
+        }
+    }
+// @lc code=end
+
+    @Test
+    public void test(){
+        String s = "abcba", p = "ab";
+        Solution solution = new Solution();
+        solution.findAnagrams(s, p);
     }
 }
-// @lc code=end
 
