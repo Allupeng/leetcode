@@ -40,13 +40,29 @@
  * 
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class _0448_FindAllNumbersDisappearedInAnArray {
-    // @lc code=start
+// @lc code=start
     class Solution {
         public List<Integer> findDisappearedNumbers(int[] nums) {
-
+            if (nums.length == 0){
+                return new ArrayList<>();
+            }
+            List<Integer> result = new ArrayList<>();
+            for (int i = 0; i < nums.length; i++){
+                int idx = Math.abs(nums[i]) - 1;
+                if (nums[idx] > 0){
+                    nums[idx] *= -1;
+                }
+            }
+            for (int i = 0; i < nums.length; i++){
+                if (nums[i] > 0){
+                    result.add(i + 1);
+                }
+            }
+            return result;
         }
     }
 // @lc code=end
