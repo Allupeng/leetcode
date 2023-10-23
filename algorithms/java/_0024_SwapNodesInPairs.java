@@ -70,18 +70,18 @@ public class _0024_SwapNodesInPairs {
                 return head;
             }
             ListNode dummyNode = new ListNode(-1, head);
-            ListNode cur = dummyNode;
-            while(cur.next != null && cur.next.next != null){
-                ListNode firstNode = cur.next;
-                ListNode secondNode = cur.next.next;
-                ListNode next = cur.next.next.next;
-                cur.next = secondNode;
-                secondNode.next = firstNode;
-                firstNode.next = next;
-                cur = cur.next.next;
+            ListNode h = dummyNode;
+            ListNode cur = head;
+            while(cur != null && cur.next != null){
+                ListNode first = cur, second = cur.next;
+                ListNode next = cur.next.next;
+                h.next = second;
+                second.next = first;
+                first.next = next;
+                cur = next;
+                h = first;
             }
             return dummyNode.next;
-
         }
     }
 // @lc code=end
