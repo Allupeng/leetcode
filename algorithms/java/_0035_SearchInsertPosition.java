@@ -63,21 +63,13 @@ public class _0035_SearchInsertPosition {
                 int mid = lo + ((hi - lo) >> 1);
                 if(target == nums[mid]){
                     return mid;
-                }else if(nums[mid] > target){
-                    if(mid == 0 || nums[mid - 1] < target){
-                        return mid;
-                    }else{
-                        hi = mid - 1;
-                    }
-                }else{
-                    if(mid == nums.length - 1 || nums[mid + 1] > target){
-                        return mid + 1;
-                    }else{
-                        lo = mid + 1;
-                    }
+                }else if(target < nums[mid]){
+                    hi = mid - 1;
+                }else if(nums[mid] < target){
+                    lo = mid + 1;
                 }
             }
-            return -1;
+            return hi + 1;
         }
     }
 }

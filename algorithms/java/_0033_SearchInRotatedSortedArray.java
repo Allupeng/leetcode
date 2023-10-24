@@ -55,24 +55,21 @@ public class _0033_SearchInRotatedSortedArray {
 // @lc code=start
     class Solution {
         public int search(int[] nums, int target) {
-            // [4,5,6,7,0,1,2] target = 3
-            // 如果 mid 落在前半区,一定有 nums[low] < nums[mid]
-            // 如果 mid 落在后半区,一定有 nums[mid] < nums[high]
-            int left = 0, right = nums.length - 1;
-            while (left <= right){
-                int mid = left + (right - left) / 2;
-                if (target == nums[mid]) return mid;
-                if (nums[left] <= nums[mid]){
-                    if (nums[left] <= target && target < nums[mid]){
-                        right = mid - 1;
-                    }else {
-                        left = mid + 1;
+            int lo = 0, hi = nums.length - 1;
+            while (lo <= hi){
+                int mid = lo + (hi - lo) / 2;
+                if(target == nums[mid]) return mid;
+                if(nums[lo] <= nums[mid]){
+                    if(nums[lo] <= target && target < nums[mid]){
+                        hi = mid - 1;
+                    }else{
+                        lo = mid + 1;
                     }
-                }else {
-                    if (nums[mid] < target && target <= nums[right]){
-                        left = mid + 1;
-                    }else {
-                        right = mid - 1;
+                }else{
+                    if(nums[mid] < target && target <= nums[hi]){
+                        lo = mid + 1;
+                    }else{
+                        hi = mid - 1;
                     }
                 }
             }

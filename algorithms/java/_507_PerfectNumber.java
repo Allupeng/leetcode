@@ -50,7 +50,7 @@ public class _507_PerfectNumber {
 // @lc code=start
     class Solution {
         public boolean checkPerfectNumber(int num) {
-
+            return true;
         }
     }
 // @lc code=end
