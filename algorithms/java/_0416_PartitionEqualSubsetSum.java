@@ -53,38 +53,25 @@ public class _0416_PartitionEqualSubsetSum {
 // @lc code=start
     class Solution {
         public boolean canPartition(int[] nums) {
+            if(nums.length < 2) return false;
             int sum = Arrays.stream(nums).sum();
-            if (sum % 2 == 1){
-                // can't be partition
-                return false;
-            }
-            /**
-             * 0-1背包问题
-             * 数组中每个元素都是一个物品
-             * 每个物品的价值为nums[i]
-             * 题目要求为能否在数组中找到价值 = sum / 2的物品数量
-             */
-            // dp 定义为 dp[i][j] 为 在arr[0...i]的物品当中容量为j
-            // 本题目求解为 当容量为 sum / 2时能否价值恰好等于 sum / 2
+            if(sum % 2 == 1) return false;
             int target = sum / 2;
             int[][] dp = new int[nums.length][target + 1];
-
-            for (int j = 0; j <= target; j++){
-                if (j >= nums[0]){
+            for(int j = 0; j <= target; j++){
+                if(j >= nums[0]){
                     dp[0][j] = nums[0];
                 }
             }
-            for (int i = 0; i < nums.length; i++){
+            for(int i = 0; i < nums.length; i++){
                 dp[i][0] = 0;
             }
-
-            for (int i = 1; i < nums.length; i++){
-                for (int j = 1; j <= target; j++){
-                    if (j < nums[i]){
+            for(int i = 1; i < nums.length; i++){
+                for(int j = 1; j <= target; j++){
+                    if(j >= nums[i]){
+                        dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - nums[i]] + nums[i]);
+                    }else{
                         dp[i][j] = dp[i - 1][j];
-                    }else {
-                        // 要么不装，即价值等于上一个
-                        dp[i][j] = Math.max(dp[i - 1][j], nums[i] + dp[i - 1][j - nums[i]]);
                     }
                 }
             }
