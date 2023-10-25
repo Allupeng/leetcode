@@ -55,16 +55,13 @@ public class _0279_PerfectSquares {
 // @lc code=start
     class Solution {
         public int numSquares(int n) {
-            //dp[j] 代表容量为j时的最小完美平方数数量
             int[] dp = new int[n + 1];
             Arrays.fill(dp, Integer.MAX_VALUE - 1);
-            dp[0]= 0;
-            for (int i = 0; i <= n; i++){
-                for (int j = i; j <= n; j++){
-                    if (j - (i * i) < 0){
-                        continue;
-                    }
-                    dp[j] = Math.min(dp[j], dp[j - (i * i)] + 1);
+            dp[0] = 0;
+            for(int i = 0; i <= n; i++){
+                for(int j = i; j <= n; j++){
+                    if(j < i * i) continue;
+                    dp[j] = Math.min(dp[j - i * i] + 1, dp[j]);
                 }
             }
             return dp[n];

@@ -49,46 +49,30 @@
  * 
  */
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class _0004_MedianOfTwoSortedArrays {
 // @lc code=start
     class Solution {
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-            if (nums1.length == 0 && nums2.length == 0){
-                return 0.0d;
-            }
-            int m = nums1.length;
-            int n = nums2.length;
-            double[] arr = new double[m + n];
-            int i = 0, j = 0;
-            int k = 0;
-            while(i < m && j < n){
-                if (nums1[i] <= nums2[j]){
-                    arr[k] = nums1[i];
-                    i++;
-                }else {
-                    arr[k] = nums2[j];
-                    j++;
+            int m = nums1.length, n = nums2.length;
+            if(m == 0 && n == 0) return 0.0;
+            int[] nums = new int[m + n];
+            int i = 0, j = 0, k = 0;
+            while(i < nums1.length && j < nums2.length){
+                if(nums1[i] <= nums2[j]){
+                    nums[k++] = nums1[i++];
+                }else{
+                    nums[k++] = nums2[j++];
                 }
-                k++;
             }
-            while(i < m){
-                arr[k] = nums1[i];
-                k++;
-                i++;
+            while(i < nums1.length){
+                nums[k++] = nums1[i++];
             }
-            while(j < n){
-                arr[k] = nums2[j];
-                k++;
-                j++;
+            while(j < nums2.length){
+                nums[k++] = nums2[j++];
             }
-            if (arr.length % 2 == 1){
-                return arr[arr.length / 2];
-            }else {
-                return (arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2;
-            }
+            return nums.length % 2 == 1 ? (double) nums[nums.length / 2] : (double) (nums[nums.length / 2] + nums[nums.length / 2 - 1]) / 2;
         }
     }
 // @lc code=end

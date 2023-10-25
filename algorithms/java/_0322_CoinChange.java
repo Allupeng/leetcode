@@ -66,21 +66,16 @@ public class _0322_CoinChange {
 // @lc code=start
     class Solution {
         public int coinChange(int[] coins, int amount) {
-            if (coins.length == 0){
-                return -1;
-            }
-            // dp[j]代表容量为j时能凑到价值为j的最小硬币数量
-            // 完全背包问题
-            // dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1)
             int[] dp = new int[amount + 1];
             Arrays.fill(dp, Integer.MAX_VALUE - 1);
             dp[0] = 0;
-            for (int i = 0; i < coins.length; i++){
-                for (int j = coins[i]; j <= amount; j++){
-                    dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+            for(int i = 0; i < coins.length; i++){
+                for(int j = 0; j < dp.length; j++){
+                    if(j - coins[i] < 0) continue;
+                    dp[j] = Math.min(dp[j - coins[i]] + 1, dp[j]);
                 }
             }
-            return dp[amount] == (Integer.MAX_VALUE - 1) ? -1 : dp[amount];
+            return dp[amount] == Integer.MAX_VALUE - 1 ? -1 : dp[amount];
         }
     }
 // @lc code=end

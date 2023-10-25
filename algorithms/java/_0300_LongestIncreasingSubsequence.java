@@ -60,23 +60,19 @@ public class _0300_LongestIncreasingSubsequence {
 // @lc code=start
     class Solution {
         public int lengthOfLIS(int[] nums) {
-            if (nums.length == 0){
-                return 0;
-            }
-            if(nums.length == 1){
-                return 1;
-            }
-            //dp[j] 代表nums[0...j]的最长递增子序列长度
-            int result = 0;
-            int[] dp = new int[nums.length];
+            if(nums.length == 0) return 0;
+            if(nums.length == 1) return 1;
+            int n = nums.length;
+            int[] dp = new int[n];
             Arrays.fill(dp, 1);
-            for (int i = 1; i < nums.length; i++){
-                for (int j = 0; j < i; j++){
-                    if (nums[j] < nums[i]){
-                        dp[i] = Math.max(dp[i], dp[j] + 1);
+            int result = 0;
+            for(int j = 1; j < n; j++){
+                for(int i = 0; i < j; i++){
+                    if(nums[j] > nums[i]){
+                        dp[j] = Math.max(dp[i] + 1, dp[j]);
                     }
                 }
-                result = Math.max(result, dp[i]);
+                result = Math.max(result, dp[j]);
             }
             return result;
         }
