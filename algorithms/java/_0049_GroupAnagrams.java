@@ -52,25 +52,21 @@ public class _0049_GroupAnagrams {
 // @lc code=start
     class Solution {
         public List<List<String>> groupAnagrams(String[] strs) {
-            Map<String, List<Integer>> sortedStrMap = new HashMap<>();
+            Map<String, List<String>> sortedStrMap = new HashMap<>();
             for (int i = 0; i < strs.length; i++){
-                char[] chars = strs[i].toCharArray();
-                Arrays.sort(chars);
-                String sortedStr = new String(chars);
-                List<Integer> list = sortedStrMap.get(sortedStr);
+                char[] origin = strs[i].toCharArray();
+                Arrays.sort(origin);
+                String sorted = new String(origin);
+                List<String> list = sortedStrMap.get(sorted);
                 if (list == null){
                     list = new ArrayList<>();
                 }
-                list.add(i);
-                sortedStrMap.put(sortedStr, list);
+                list.add(strs[i]);
+                sortedStrMap.put(sorted, list);
             }
             List<List<String>> result = new ArrayList<>();
-            for (String key : sortedStrMap.keySet()){
-                List<String> tmp = new ArrayList<>();
-                for (Integer index : sortedStrMap.get(key)){
-                    tmp.add(strs[index]);
-                }
-                result.add(tmp);
+            for (List<String> value : sortedStrMap.values()){
+                result.add(value);
             }
             return result;
         }

@@ -63,21 +63,18 @@ public class _0003_LongestSubstringWithoutRepeatingCharacters {
     // @lc code=start
     class Solution {
         public int lengthOfLongestSubstring(String s) {
-            if (s == null || s.equals("")){
-                return 0;
-            }
+            if (s == null || s.equals("")) return 0;
             int result = 0;
-            Set<Character> set = new HashSet<>();
-            //滑动窗口算法
             int left = 0, right = 0;
+            // set维护 window 中的元素
+            Set<Character> set = new HashSet<>();
             while(right < s.length()){
-                // 如果滑动窗口包含重复值，更新最大长度。
                 if (set.contains(s.charAt(right))){
                     set.remove(s.charAt(left));
                     left++;
                 }else {
                     set.add(s.charAt(right));
-                    result = Math.max(right - left + 1, result);
+                    result = Math.max(result, right - left + 1);
                     right++;
                 }
             }

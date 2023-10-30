@@ -90,20 +90,15 @@ public class _0042_TrappingRainWater {
         // 求出除第一列和最后一列以外的每一列的左边最高高度和右边最高高度
         int totalWater = 0;
         for (int i = 0; i < height.length; i++){
-            if (i == 0 || i == height.length - 1){
-                continue;
+            if (i == 0 || i == height.length - 1) continue;
+            int leftMax = 0, rightMax = 0;
+            for (int left = 0; left < i; left++){
+                leftMax = Math.max(leftMax, height[left]);
             }
-            int leftHeightMax = 0;
-            // 求左边
-            for (int left = i - 1; left >= 0; left--){
-                leftHeightMax = Math.max(leftHeightMax, height[left]);
+            for (int right = height.length - 1; right > i; right--){
+                rightMax = Math.max(rightMax, height[right]);
             }
-            int rightHeightMax = 0;
-            // 求右边
-            for(int right = i + 1; right < height.length; right++){
-                rightHeightMax = Math.max(rightHeightMax, height[right]);
-            }
-            totalWater += Math.max(Math.min(leftHeightMax, rightHeightMax) - height[i], 0);
+            totalWater += Math.max(Math.min(leftMax, rightMax) - height[i], 0);
         }
         return totalWater;
     }
@@ -128,18 +123,14 @@ public class _0042_TrappingRainWater {
         //rightMaxDP[i] 代表是 height[i]的右边最大高度
         int[] rightMaxDP = new int[height.length];
         for (int i = 0; i < height.length; i++){
-            if (i == 0 || i == height.length - 1){
-                continue;
-            }
+            if (i == 0 || i == height.length - 1) continue;
             leftMaxDP[i] = Math.max(leftMaxDP[i - 1], height[i - 1]);
         }
-        for (int i = height.length - 1; i >= 0; i--){
-            if (i == 0 || i == height.length - 1){
-                continue;
-            }
-            rightMaxDP[i] = Math.max(rightMaxDP[i + 1], height[i + 1]);
+        for (int j = height.length - 1; j >= 0; j--){
+            if (j == 0 || j == height.length - 1) continue;
+            rightMaxDP[j] = Math.max(rightMaxDP[j + 1], height[j + 1]);
         }
-        for (int i = 1; i < height.length - 1; i++){
+        for (int i = 0; i < height.length; i++){
             totalWater += Math.max(Math.min(leftMaxDP[i], rightMaxDP[i]) - height[i], 0);
         }
         return totalWater;

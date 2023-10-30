@@ -56,20 +56,17 @@ public class _0128_LongestConsecutiveSequence {
 // @lc code=start
     class Solution {
         public int longestConsecutive(int[] nums) {
-            if (nums.length == 0){
-                return 0;
-            }
+            int max = 0;
             Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet());
-            int max = 1;
             for (int num : nums){
                 if (!set.contains(num - 1)){
                     int len = 1;
                     int next = num + 1;
                     while (set.contains(next)){
-                        next = next + 1;
                         len++;
+                        next = next + 1;
                     }
-                    max = Math.max(max, len);
+                    max = Math.max(len, max);
                 }
             }
             return max;

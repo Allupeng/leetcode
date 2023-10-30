@@ -72,29 +72,25 @@ public class _0015_3Sum {
         public List<List<Integer>> threeSum(int[] nums) {
             Arrays.sort(nums);
             Set<List<Integer>> result = new HashSet<>();
-            for(int i = 0; i < nums.length; i++){
-                // skip duplicate values
-                if (i > 0 && nums[i] == nums[i - 1]){
-                    continue;
-                }
-                int left = i + 1;
-                int right = nums.length - 1;
-                // i != j != k -> i != left != right
-                while(left < right){
-                    int sum = nums[i] + nums[left] + nums[right];
-                    // if sum < 0, right--
+            for (int i = 0; i < nums.length; i++){
+                // 有重复元素跳过
+                if (i > 0 && nums[i] == nums[i - 1]) continue;
+                int j = i + 1;
+                int k = nums.length - 1;
+                while (j < k){
+                    int sum = nums[i] + nums[j] + nums[k];
                     if (sum < 0){
-                        left++;
-                    }else if(sum > 0){
-                        right--;
-                    }else{
-                        result.add(Arrays.asList(nums[i], nums[left], nums[right]));
-                        left++;
-                        right--;
+                        j++;
+                    }else if (sum > 0){
+                        k--;
+                    }else {
+                        List<Integer> tmp = new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[k]));
+                        result.add(tmp);
+                        j++;
+                        k--;
                     }
                 }
             }
-            // 去重
             return new ArrayList<>(result);
         }
     }

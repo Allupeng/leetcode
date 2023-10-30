@@ -65,17 +65,17 @@ public class _0438_FindAllAnagramsInAString {
             List<Integer> result = new ArrayList<>();
             int[] need = new int[26];
             int[] window = new int[26];
-            for (char pCh : p.toCharArray()){
-                need[pCh - 'a']++;
+            for (int i = 0; i < p.length(); i++){
+                need[p.charAt(i) - 'a']++;
             }
             int left = 0, right = 0;
-            while(right < s.length()){
+            while (right < s.length()){
                 window[s.charAt(right) - 'a']++;
                 while (right - left + 1 > p.length()){
                     window[s.charAt(left) - 'a']--;
                     left++;
                 }
-                if (((right - left + 1) == p.length()) && Arrays.equals(need, window)){
+                if (right - left + 1 == p.length() && Arrays.equals(need, window)){
                     result.add(left);
                 }
                 right++;

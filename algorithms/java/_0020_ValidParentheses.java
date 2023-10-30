@@ -58,13 +58,15 @@
 
 import org.junit.Test;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class _0020_ValidParentheses {
 // @lc code=start
     class Solution {
         public boolean isValid(String s) {
-            Stack<Character> stack = new Stack<>();
+            Deque<Character> stack = new LinkedList<>();
             for (int i = 0; i < s.length(); i++){
                 char ch = s.charAt(i);
                 if (ch == '[' || ch == '{' || ch == '('){
