@@ -64,15 +64,20 @@ public class _0189_RotateArray {
 // @lc code=start
     class Solution {
         public void rotate(int[] nums, int k) {
+            if (nums.length <= 1) return;
             int n = nums.length;
-            k = k % n;
+            // 三步反转法, 以 k = 3为例
+            // [1,2,3,4,5,6,7] -> [7,6,5,4,3,2,1]
+            // [7,6,5,4,3,2,1] -> [5,6,7,4,3,2,1]
+            // [5,6,7,4,3,2,1] -> [5,6,7,1,2,3,4]
+            k = k % nums.length;
             reverse(nums, 0, n - 1);
             reverse(nums, 0, k - 1);
             reverse(nums, k, n - 1);
         }
 
         private void reverse(int[] nums, int l, int r){
-            if (nums.length == 1){
+            if (nums.length <= 1){
                 return;
             }
             while (l < r){

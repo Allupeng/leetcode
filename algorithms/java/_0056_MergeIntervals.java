@@ -56,49 +56,33 @@ public class _0056_MergeIntervals {
 // @lc code=start
     class Solution {
         public int[][] merge(int[][] intervals) {
-            int rows = intervals.length;
-            if (rows == 1){
+            if (intervals.length == 1){
                 return intervals;
             }
-            Arrays.sort(intervals, (o1, o2) -> {
+            Arrays.sort(intervals, ((o1, o2) -> {
                 if (o1[0] == o2[0]){
                     return o1[1] - o2[1];
                 }else {
                     return o1[0] - o2[0];
                 }
-            });
-            List<List<Integer>> cells = new ArrayList<>();
-            List<Integer> firstCell = new ArrayList<>();
-            firstCell.add(intervals[0][0]);
-            firstCell.add(intervals[0][1]);
-            cells.add(firstCell);
-            for (int i = 1; i < rows; i++){
-                List<Integer> lastCell = cells.get(cells.size() - 1);
-                List<Integer> cell = new ArrayList<>();
-                if (lastCell.get(1) >= intervals[i][0]){
-                    // merge cells
-                    // [1, 4] [2, 3]
-                    cells.remove(cells.size() - 1);
-                    cell.add(lastCell.get(0));
-                    if (lastCell.get(1) >= intervals[i][1]){
-                        cell.add(lastCell.get(1));
-                    }else {
-                        cell.add(intervals[i][1]);
+            }));
+            List<int[]> result = new ArrayList<>();
+            result.add(intervals[0]);
+            for (int i = 1; i < intervals.length; i++){
+                int[] last = result.get(result.size() - 1);
+                int[] cur = intervals[i];
+                // 有重叠部分，进行区间合并
+                if (last[1] >= cur[0]){
+                    if (last[1] < cur[1]){
+                        int[] newInterval = new int[]{last[0], cur[1]};
+                        result.remove(result.size() - 1);
+                        result.add(newInterval);
                     }
-                }else {
-                    cell.add(intervals[i][0]);
-                    cell.add(intervals[i][1]);
+                }else{
+                    result.add(cur);
                 }
-                cells.add(cell);
             }
-            int[][] result = new int[cells.size()][2];
-            int index = 0;
-            for (List<Integer> cell : cells){
-                result[index][0] = cell.get(0);
-                result[index][1] = cell.get(1);
-                index++;
-            }
-            return result;
+            return result.toArray(new int[result.size()][]);
         }
     }
 // @lc code=end

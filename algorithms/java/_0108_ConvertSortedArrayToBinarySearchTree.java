@@ -66,13 +66,15 @@ public class _0108_ConvertSortedArrayToBinarySearchTree {
             return buildBSTHelper(nums, 0, nums.length - 1);
         }
 
-        private TreeNode buildBSTHelper(int[] nums, int start, int end){
-            if (start > end) return null;
-            int mid = start + ((end - start) / 2);
-            TreeNode node = new TreeNode(nums[mid]);
-            node.left = buildBSTHelper(nums, start, mid - 1);
-            node.right = buildBSTHelper(nums, mid + 1, end);
-            return node;
+        private TreeNode buildBSTHelper(int[] nums, int start, int end) {
+            if (start > end){
+                return null;
+            }
+            int mid = start + ((end - start) >> 1);
+            TreeNode root = new TreeNode(nums[mid]);
+            root.left = buildBSTHelper(nums, start, mid - 1);
+            root.right = buildBSTHelper(nums, mid + 1, end);
+            return root;
         }
     }
 // @lc code=end

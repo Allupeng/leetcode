@@ -73,30 +73,24 @@ public class _0199_BinaryTreeRightSideView {
 // @lc code=start
     class Solution {
         public List<Integer> rightSideView(TreeNode root) {
+            if (root == null) return new ArrayList<>();
             List<Integer> result = new ArrayList<>();
-            List<List<Integer>> levelResult = new ArrayList<>();
-            if (root == null){
-                return result;
-            }
+            List<List<Integer>> list = new ArrayList<>();
             Queue<TreeNode> queue = new LinkedList<>();
             queue.offer(root);
             while (!queue.isEmpty()){
                 int size = queue.size();
-                List<Integer> tmpResult = new ArrayList<>();
-                for (int i = 0; i < size; i++){
-                    TreeNode cur = queue.poll();
-                    if (cur == null){
-                        continue;
-                    }
-                    tmpResult.add(cur.val);
-                    if (cur.left != null) queue.offer(cur.left);
-                    if (cur.right != null) queue.offer(cur.right);
+                List<Integer> t = new ArrayList<>();
+                for(int i = 0; i < size; i++){
+                    TreeNode node = queue.poll();
+                    t.add(node.val);
+                    if (node.left != null) queue.offer(node.left);
+                    if (node.right != null) queue.offer(node.right);
                 }
-                levelResult.add(tmpResult);
+                list.add(t);
             }
-            // 将每个list的最后一个拿出来
-            for (List<Integer> list : levelResult){
-                result.add(list.get(list.size() - 1));
+            for (List<Integer> l : list){
+                result.add(l.get(l.size() - 1));
             }
             return result;
         }

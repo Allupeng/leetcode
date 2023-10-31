@@ -52,22 +52,23 @@ public class _0048_RotateImage {
 // @lc code=start
     class Solution {
         public void rotate(int[][] matrix) {
-            //先按对角对换元素
-            //以3 * 3为例，(0,0) (2, 2) (0,1) (1,2) (1,0) (2, 1)
-            int n = matrix.length;
-            for (int i = 0; i < n; i++){
-                for (int j = 0; j < n - i; j++){
-                    int t = matrix[i][j];
-                    matrix[i][j] = matrix[n - j - 1][n - i - 1];
-                    matrix[n - j - 1][n - i - 1] = t;
+            int m = matrix.length, n = matrix[0].length;
+            int top = 0, bottom = m - 1;
+            while (top < bottom){
+                for (int j = 0; j < n; j++){
+                    int t = matrix[top][j];
+                    matrix[top][j] = matrix[bottom][j];
+                    matrix[bottom][j] = t;
                 }
+                top++;
+                bottom--;
             }
-            //再按列对换元素
+            //沿着对角线进行交换
             for (int i = 0; i < n; i++){
-                for (int j = 0; j < n / 2; j++){
-                    int t = matrix[j][i];
-                    matrix[j][i] = matrix[n - j - 1][i];
-                    matrix[n - j - 1][i] = t;
+                for (int j = 0; j < i; j++){
+                    int t = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = t;
                 }
             }
         }

@@ -69,33 +69,22 @@ public class _0098_ValidateBinarySearchTree {
     }
 // @lc code=start
     class Solution {
+        Integer pre;
         public boolean isValidBST(TreeNode root) {
             // BST定义 左子树的所有值都要小于根节点
             // 右子树的所有值都大于根节点
             // 左子树的最右下角的结点值要小于根节点
             // 右子树的最左下角的结点值要大于根节点
-            if (root == null){
+            if (root == null) {
                 return true;
             }
-            int leftMax = Integer.MAX_VALUE;
-            if (root.left != null){
-                TreeNode left = root.left;
-                while (left.right != null){
-                    left = left.right;
-                }
-                leftMax = left.val;
+            boolean left = isValidBST(root.left);
+            if (pre != null && pre >= root.val){
+                return false;
             }
-            int rightMin = Integer.MIN_VALUE;
-            if (root.right != null){
-                TreeNode right = root.right;
-                while (right.left != null){
-                    right = right.left;
-                }
-                rightMin = right.val;
-            }
-            boolean leftValid = (root.left == null) || (leftMax != Integer.MAX_VALUE && leftMax < root.val);
-            boolean rightValid = (root.right == null) || (rightMin != Integer.MIN_VALUE && root.val < rightMin);
-            return leftValid && rightValid && isValidBST(root.left) && isValidBST(root.right);
+            pre = root.val;
+            boolean right = isValidBST(root.right);
+            return left & right;
         }
     }
 // @lc code=end
