@@ -74,13 +74,11 @@ public class _0105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
             if (inorderStart > inorderEnd){
                 return null;
             }
-
             TreeNode root = new TreeNode(preorder[preOrderIndex]);
             preOrderIndex++;
-
-            int rootIndex = findRootIndexInInorder(inorder, inorderStart, inorderEnd, root.val);
-            root.left = buildTreeHelper(preorder, inorder, inorderStart, rootIndex - 1);
-            root.right = buildTreeHelper(preorder, inorder, rootIndex + 1, inorderEnd);
+            int inOrderIndex = findRootIndexInInorder(inorder, inorderStart, inorderEnd, root.val);
+            root.left = buildTreeHelper(preorder, inorder, inorderStart, inOrderIndex - 1);
+            root.right = buildTreeHelper(preorder, inorder, inOrderIndex + 1, inorderEnd);
             return root;
         }
 

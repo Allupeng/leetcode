@@ -70,8 +70,7 @@ public class _0017_LetterCombinationsOfAPhoneNumber {
                 return new ArrayList<>();
             }
             List<String> result = new ArrayList<>();
-            int k = digits.length();
-            combinations(digits, new StringBuilder(), k, result);
+            combinations(digits, new StringBuilder(), digits.length(), result);
             return result;
         }
 
@@ -81,9 +80,9 @@ public class _0017_LetterCombinationsOfAPhoneNumber {
                 return;
             }
             char ch = nextDigits.charAt(0);
-            String letters = lettersMap.get(ch);
-            for (int i = 0; i < letters.length(); i++){
-                str.append(letters.charAt(i));
+            String s = lettersMap.get(ch);
+            for (int i = 0; i < s.length(); i++){
+                str.append(s.charAt(i));
                 combinations(nextDigits.substring(1), str, len, result);
                 str.deleteCharAt(str.length() - 1);
             }

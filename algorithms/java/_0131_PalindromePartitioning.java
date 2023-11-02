@@ -46,29 +46,24 @@ public class _0131_PalindromePartitioning {
 
         private List<String> path = new ArrayList<>();
 
-    // 分为两个step
-    // step1:
-    public List<List<String>> partition(String s) {
+        public List<List<String>> partition(String s) {
             if (s == null || s.equals("")){
-                return new ArrayList<>();
+                return result;
             }
             backtrace(s, 0);
             return result;
         }
 
-        private void backtrace(String s, int startIndex){
-            if (startIndex >= s.length()){
+        private void backtrace(String s, int start){
+            if (start == s.length()){
                 result.add(new ArrayList<>(path));
                 return;
             }
-            for (int i = startIndex; i < s.length(); i++){
-                if (isPalindrome(s, startIndex, i)){
-                    String str = s.substring(startIndex, i + 1);
-                    path.add(str);
-                }else {
+            for (int i = start; i < s.length(); i++){
+                if (!isPalindrome(s, start, i)){
                     continue;
                 }
-                // 从i + 1位置开始分割
+                path.add(s.substring(start, i + 1));
                 backtrace(s, i + 1);
                 path.remove(path.size() - 1);
             }

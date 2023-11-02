@@ -65,16 +65,13 @@ public class _0046_Permutations {
                 if (used[i]){
                     continue;
                 }
-                path.add(nums[i]);
                 used[i] = true;
+                path.add(nums[i]);
                 backtrace(nums, used);
-                used[i] = false;
                 path.remove(path.size() - 1);
+                used[i] = false;
             }
         }
-
-
-
     }
 // @lc code=end
 }

@@ -58,26 +58,28 @@ public class _0051_NQueens {
     class Solution {
         private final List<List<String>> result = new ArrayList<>();
         public List<List<String>> solveNQueens(int n) {
+            if (n == 0){
+                return new ArrayList<>();
+            }
             char[][] chessboard = new char[n][n];
-            for (char[] chars : chessboard) {
-                Arrays.fill(chars, '.');
+            for (char[] board : chessboard){
+                Arrays.fill(board, '.');
             }
             backtrace(0, n, chessboard);
             return result;
         }
 
         private void backtrace(int row, int n, char[][] chessboard){
-            // 找到了一个结果
             if (row == n){
-                List<String> singleResult = new ArrayList<>();
-                for (char[] singleRow : chessboard){
-                    String chars = new String(singleRow);
-                    singleResult.add(chars);
+                List<String> path = new ArrayList<>();
+                for (char[] rows : chessboard){
+                    path.add(new String(rows));
                 }
-                result.add(singleResult);
+                result.add(path);
                 return;
             }
-            for (int col = 0; col < chessboard[0].length; col++){
+            // 保证了同一行只有一个皇后
+            for (int col = 0; col < n; col++){
                 if (isValidPosition(row, col, chessboard)){
                     chessboard[row][col] = 'Q';
                     backtrace(row + 1, n, chessboard);

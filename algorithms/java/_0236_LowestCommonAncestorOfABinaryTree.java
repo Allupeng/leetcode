@@ -69,23 +69,11 @@ public class _0236_LowestCommonAncestorOfABinaryTree {
 // @lc code=start
     class Solution {
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            // 如果找到了 p、q结点直接返回
-            if (root == q || root == p || root == null){
-                return root;
-            }
+            if (root == null || root == q || root == p) return root;
             TreeNode left = lowestCommonAncestor(root.left, p, q);
             TreeNode right = lowestCommonAncestor(root.right, p, q);
-            // 如果p、q不为null 代表root为公共结点
-            if (left != null && right != null){
-                return root;
-            }
-            if (left == null && right != null){
-                return right;
-            }else if (left != null && right == null){
-                return left;
-            }else {
-                return null;
-            }
+            if (left != null && right != null) return root;
+            return left == null ? right : left;
         }
     }
 // @lc code=end

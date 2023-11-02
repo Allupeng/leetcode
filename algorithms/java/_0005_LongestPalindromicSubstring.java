@@ -53,21 +53,19 @@ public class _0005_LongestPalindromicSubstring {
             }
             int maxLen = 1;
             int left = 0;
-            //dp[i][j]代表 s[i,j]的最长回文子串长度
-            // dp[i][j] = dp[i + 1][j - 1] && s[i][j]
-            boolean[][] dp = new boolean[s.length()][s.length()];
-            for (int i = 0; i < s.length(); i++){
+            int n = s.length();
+            boolean[][] dp = new boolean[n][n];
+            for (int i = 0; i < n; i++){
                 dp[i][i] = true;
-                left = i;
             }
-
-            for (int i = s.length() - 1; i >= 0; i --){
-                for (int j = i + 1; j < s.length(); j++){
-                    if (s.charAt(i) == s.charAt(j) && ((i + 1 == j) || dp[i + 1][j - 1])){
+            for (int i = n - 1; i >= 0; i--){
+                for (int j = i + 1; j < n; j++){
+                    System.out.printf("当前计算的为dp[%s][%s]%n", i, j);
+                    if ( s.charAt(i) == s.charAt(j) && (i + 1 == j || dp[i + 1][j - 1])){
                         dp[i][j] = true;
-                        if (maxLen < j - i + 1){
-                            left = i;
+                        if (j - i + 1 > maxLen){
                             maxLen = j - i + 1;
+                            left = i;
                         }
                     }
                 }
@@ -80,8 +78,8 @@ public class _0005_LongestPalindromicSubstring {
     @Test
     public void test(){
         Solution solution = new Solution();
-        String s = "babad";
-        Assert.assertEquals("aba", solution.longestPalindrome(s));
+        String s = "abcba";
+        Assert.assertEquals("abcba", solution.longestPalindrome(s));
     }
 
     @Test

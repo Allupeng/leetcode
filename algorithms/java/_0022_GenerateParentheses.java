@@ -44,26 +44,21 @@ public class _0022_GenerateParentheses {
     class Solution {
         public List<String> generateParenthesis(int n) {
             List<String> result = new ArrayList<>();
-            backtrack(result, new StringBuilder(), 0, 0, n);
+            backtrace(n, 0, 0, new StringBuilder(), result);
             return result;
         }
 
-        private void backtrack(List<String> result, StringBuilder cur, int open, int close, int max){
-            if (cur.length() == max * 2){
+        private void backtrace(int n, int open, int close, StringBuilder cur, List<String> result){
+            if (open == n && close == n){
                 result.add(cur.toString());
+                return;
             }
-            if (open < max){
-                open = open + 1;
-                cur.append("(");
-                backtrack(result, cur, open, close, max);
-                open = open - 1;
+            if (open < n){
+                backtrace(n, open + 1, close, cur.append('('), result);
                 cur.deleteCharAt(cur.length() - 1);
             }
-            if (close < open){
-                close = close + 1;
-                cur.append(")");
-                backtrack(result, cur, open, close, max);
-                close = close - 1;
+            if (open > close){
+                backtrace(n, open, close + 1, cur.append(')'), result);
                 cur.deleteCharAt(cur.length() - 1);
             }
         }
@@ -74,7 +69,7 @@ public class _0022_GenerateParentheses {
     public void test(){
         Solution solution = new Solution();
         int n = 3;
-        Assert.assertEquals(4, solution.generateParenthesis(n).size());
+        Assert.assertEquals(5, solution.generateParenthesis(n).size());
     }
 }
 

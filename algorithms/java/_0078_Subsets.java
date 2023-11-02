@@ -57,7 +57,7 @@ public class _0078_Subsets {
 
         public List<List<Integer>> subsets(int[] nums) {
             if (nums.length == 0){
-                return result;
+                return new ArrayList<>();
             }
             backtrace(nums, 0);
             return result;

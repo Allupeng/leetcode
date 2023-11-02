@@ -76,22 +76,23 @@ public class _0039_CombinationSum {
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
             List<List<Integer>> result = new ArrayList<>();
             Arrays.sort(candidates);
-            combinations(candidates, 0, 0, target, new ArrayList<>(), result);
+            backtrace(candidates, 0, 0, target, new ArrayList<>(), result);
             return result;
         }
 
-        private void combinations(int[] candidates, int curSum,int startIndex , int target, List<Integer> tmp, List<List<Integer>> result){
+        private void backtrace(int[] candidates, int curSum,int startIndex , int target, List<Integer> tmp, List<List<Integer>> result){
             if (curSum == target){
                 result.add(new ArrayList<>(tmp));
                 return;
             }
             for (int i = startIndex; i < candidates.length; i++){
-                int candidate = candidates[i];
-                if (curSum + candidate > target){
+                if (curSum + candidates[i] > target){
                     break;
                 }
-                tmp.add(candidate);
-                combinations(candidates, curSum + candidate, i, target, tmp, result);
+                tmp.add(candidates[i]);
+                curSum += candidates[i];
+                backtrace(candidates, curSum, i, target, tmp, result);
+                curSum -= candidates[i];
                 tmp.remove(tmp.size() - 1);
             }
         }
