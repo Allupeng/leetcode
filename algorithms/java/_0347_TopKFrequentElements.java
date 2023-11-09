@@ -42,30 +42,34 @@
 
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class _0347_TopKFrequentElements {
 // @lc code=start
     class Solution {
         public int[] topKFrequent(int[] nums, int k) {
-            PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
-            Map<Integer, Integer> frequent = new HashMap<>();
-            for (int num : nums) {
-                frequent.put(num, frequent.getOrDefault(num , 0) + 1);
+            Queue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
+            Map<Integer, Integer> frequentMap = new HashMap<>();
+            for (int num : nums){
+                frequentMap.put(num, frequentMap.getOrDefault(num, 0) + 1);
             }
-            for (Map.Entry<Integer, Integer> entry: frequent.entrySet()){
-                int[] tmp = new int[2];
-                tmp[0] = entry.getKey();
-                tmp[1] = entry.getValue();
-                minHeap.offer(tmp);
+            for (Map.Entry<Integer, Integer> entry : frequentMap.entrySet()){
+                int[] ints = new int[2];
+                ints[0] = entry.getKey();
+                ints[1] = entry.getValue();
+                minHeap.offer(ints);
                 if (minHeap.size() > k){
                     minHeap.poll();
                 }
             }
             int[] result = new int[k];
-            for (int i = 0; i < k; i++){
+            int i = 0;
+            while (!minHeap.isEmpty()){
                 result[i] = minHeap.poll()[0];
+                i++;
             }
             return result;
         }

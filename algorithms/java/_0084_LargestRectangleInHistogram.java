@@ -45,7 +45,6 @@
  * 
  */
 
-import java.util.Arrays;
 import java.util.Stack;
 
 public class _0084_LargestRectangleInHistogram {
@@ -55,8 +54,6 @@ public class _0084_LargestRectangleInHistogram {
             //找每个元素左边小于该元素的下标,右边小于该元素的下标
             Stack<Integer> stack = new Stack<>();
             int[] tmp = new int[heights.length + 2];
-            tmp[0] = 0;
-            tmp[tmp.length - 1] = 0;
             System.arraycopy(heights, 0, tmp, 1, heights.length);
             heights = tmp;
             int maxArea = 0;

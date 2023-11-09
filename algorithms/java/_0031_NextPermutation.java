@@ -76,40 +76,34 @@ public class _0031_NextPermutation {
 // @lc code=start
     class Solution {
         public void nextPermutation(int[] nums) {
-        // 1, 3, 2 -> 2, 1, 3
-        // 从右往左找第一个递减的, 然后再从右往左找一个大于nums[i]的数
-            // 交换2个数，然后再反转后面的数
             int i = nums.length - 2;
-            while (i >= 0){
-                if (nums[i + 1] > nums[i]) break;
+            while (i >= 0 && nums[i] >= nums[i + 1]){
                 i--;
             }
             if (i >= 0){
                 int j = nums.length - 1;
-                while(j >= 0 && nums[j] <= nums[i]){
+                while (i < j && nums[i] >= nums[j]){
                     j--;
                 }
-                swap(nums, i , j);
+                swap(nums, i, j);
             }
             reverse(nums, i + 1);
         }
 
         private void swap(int[] nums, int i, int j){
-            int t= nums[i];
+            int t = nums[i];
             nums[i] = nums[j];
             nums[j] = t;
         }
 
         private void reverse(int[] nums, int start){
-            int i = start;
-            int j = nums.length - 1;
-            while (i < j){
-                swap(nums, i , j);
-                i++;
-                j--;
+            int end = nums.length - 1;
+            while (start < end){
+                swap(nums, start, end);
+                start++;
+                end--;
             }
         }
-
     }
 // @lc code=end
 }
