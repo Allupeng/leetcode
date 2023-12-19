@@ -52,21 +52,76 @@
  * 
  */
 
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
-    public ListNode sortList(ListNode head) {
+import org.junit.Test;
 
+public class _0148_SortList {
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+    // @lc code=start
+    class Solution {
+        public ListNode sortList(ListNode head) {
+            if (head == null || head.next == null){
+                return head;
+            }
+            ListNode mid = getMid(head);
+            ListNode left = head;
+            ListNode right = mid.next;
+            mid.next = null;
+
+            left = sortList(left);
+            right = sortList(right);
+
+            return conquer(left, right);
+        }
+
+        private ListNode conquer(ListNode l1, ListNode l2){
+            ListNode dummy = new ListNode(-1);
+            ListNode cur = dummy;
+            while (l1 != null && l2 != null){
+                if (l1.val <= l2.val){
+                    cur.next = l1;
+                    l1 = l1.next;
+                }else{
+                    cur.next = l2;
+                    l2 = l2.next;
+                }
+                cur = cur.next;
+            }
+            cur.next = l1 == null ? l2 : l1;
+            return dummy.next;
+        }
+
+        private ListNode getMid(ListNode head){
+            ListNode slow = head, fast = head;
+            while (fast.next != null && fast.next.next != null){
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+    }
+// @lc code=end
+
+    @Test
+    public void test(){
+        //[-1,5,3,4,0]
+        Solution solution = new Solution();
+        ListNode head = new ListNode(-1, new ListNode(5, new ListNode(3, new ListNode(4, new ListNode(0)))));
+        solution.sortList(head);
+    }
+
+    private void print(ListNode head){
+        ListNode cur = head;
+        while (cur != null){
+            System.out.print(cur.val + " ");
+            cur = cur.next;
+        }
+        System.out.println();
     }
 }
-// @lc code=end
 

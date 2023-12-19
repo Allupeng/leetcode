@@ -69,42 +69,40 @@ public class _0076_MinimumWindowSubstring{
 // @lc code=start
     class Solution {
         public String minWindow(String s, String t) {
-            int[] sArray = new int[256];
+            int[] sArray = new int[128];
             int[] tArray = initCharArray(t);
-            int leftIndex = 0,rightIndex = 0;
-            int minLen = Integer.MAX_VALUE;
+            int leftIndex = 0, rightIndex = 0;
             int left = 0, right = 0;
-            while(right < s.length()){
+            int minLen = Integer.MAX_VALUE;
+            while (right < s.length()){
                 sArray[s.charAt(right) - '0']++;
                 right++;
-                while(left <= right && isAlphabetWork(sArray, tArray)){
+                while (left <= right && isAlphabetWork(sArray, tArray)){
                     int len = right - left + 1;
-                    if(len < minLen){
-                        minLen = len;
-                        leftIndex = left;
+                    if (len < minLen){
+                        minLen = right - left + 1;
                         rightIndex = right;
+                        leftIndex = left;
                     }
                     sArray[s.charAt(left) - '0']--;
                     left++;
                 }
             }
-            return minLen == Integer.MIN_VALUE ? "" : s.substring(leftIndex, rightIndex);
+            return minLen == Integer.MAX_VALUE ? "" : s.substring(leftIndex, rightIndex);
         }
 
         private int[] initCharArray(String str){
-            int[] alphabet = new int[128];
-            for(int i = 0; i < str.length(); i++){
-                alphabet[str.charAt(i) - '0']++;
+            int[] alpha = new int[128];
+            for (char ch : str.toCharArray()){
+                alpha[ch - '0']++;
             }
-            return alphabet;
+            return alpha;
         }
 
         private boolean isAlphabetWork(int[] sArray, int[] tArray){
-            for(int i = 0; i < tArray.length; i++){
-                if (tArray[i] == 0){
-                    continue;
-                }
-                if(tArray[i] - sArray[i] > 0){
+            for (int i = 0; i < tArray.length; i++){
+                if (tArray[i] == 0) continue;
+                if (tArray[i] - sArray[i] > 0){
                     return false;
                 }
             }

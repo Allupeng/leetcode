@@ -64,6 +64,8 @@
 
 import org.junit.Test;
 
+import java.util.List;
+
 public class _0023_MergeKSortedLists {
     public class ListNode {
       int val;
@@ -79,43 +81,38 @@ public class _0023_MergeKSortedLists {
             if (lists == null || lists.length == 0){
                 return null;
             }
-            return mergeKLists(lists, 0 , lists.length - 1);
+            return sort(lists, 0, lists.length - 1);
         }
 
-        private ListNode mergeKLists(ListNode[] lists, int left , int right){
+        private ListNode sort(ListNode[] lists, int left, int right){
             int len = right - left + 1;
-            if (len <= 0){
-                return null;
-            }
-            if (len == 1){
-                return lists[left];
-            }
+            if (len == 0) return null;
+            if (len == 1) return lists[left];
             int mid = left + (right - left) / 2;
-            ListNode leftNode = mergeKLists(lists, left, mid);
-            ListNode rightNode = mergeKLists(lists, mid + 1, right);
-            return mergeTwoListNodes(leftNode, rightNode);
+            ListNode leftNode = sort(lists, left, mid);
+            ListNode rightNode = sort(lists, mid + 1, right);
+            return conquer(leftNode, rightNode);
         }
 
-        private ListNode mergeTwoListNodes(ListNode left, ListNode right){
-            if (left == null && right == null){
-                return null;
+        private ListNode conquer(ListNode l1, ListNode l2){
+            if (l1 == null && l2 == null) return null;
+            if (l1 == null) return l2;
+            if (l2 == null) return l1;
+            ListNode dummy = new ListNode();
+            ListNode cur = dummy;
+            while (l1 != null && l2 != null){
+                if (l1.val <= l2.val){
+                    cur.next = l1;
+                    l1 = l1.next;
+                }else {
+                    cur.next = l2;
+                    l2 = l2.next;
+                }
+                cur = cur.next;
             }
-            if (left == null){
-                return right;
-            }
-            if (right == null){
-                return left;
-            }
-            if (left.val <= right.val){
-                left.next = mergeTwoListNodes(left.next, right);
-                return left;
-            }else {
-                right.next = mergeTwoListNodes(left, right.next);
-                return right;
-            }
-
+            cur.next = l1 == null ? l2 : l1;
+            return dummy.next;
         }
-
     }
 // @lc code=end
 

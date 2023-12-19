@@ -63,25 +63,21 @@ public class _0239_SlidingWindowMaximum {
 // @lc code=start
     class Solution {
         public int[] maxSlidingWindow(int[] nums, int k) {
-            if (nums.length == 0){
+            if (nums == null || nums.length == 0){
                 return new int[0];
             }
             int n = nums.length;
             Deque<Integer> deque = new LinkedList<>();
-            // n - k + 1 is the number of slide windows
             int[] result = new int[n - k + 1];
             for (int i = 0; i < n; i++){
-                // front element in deque always store the index of maximum in slide window
-                // if the index of maximum in slide window is out of current slide window, out
-                while(!deque.isEmpty() && deque.peekFirst() < i - k + 1){
+                while (!deque.isEmpty() && deque.peekFirst() < i - k + 1){
                     deque.pollFirst();
                 }
-                // while deque last element is smaller than cur_value return
-                while(!deque.isEmpty() && nums[deque.peekLast()] < nums[i]){
+                while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]){
                     deque.pollLast();
                 }
                 deque.offerLast(i);
-                if (i - k + 1 >= 0){
+                if ((i - k + 1 >= 0) && !deque.isEmpty()){
                     result[i - k + 1] = nums[deque.peekFirst()];
                 }
             }

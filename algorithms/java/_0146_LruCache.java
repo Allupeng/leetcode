@@ -67,19 +67,29 @@
  * 
  */
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class _0146_LruCache {
 // @lc code=start
-class LRUCache {
+    class LRUCache extends LinkedHashMap<Integer, Integer>{
+        private int capacity;
+        public LRUCache(int capacity) {
+            super(capacity, 0.75F, true);
+            this.capacity = capacity;
+        }
 
-    public LRUCache(int capacity) {
+        public int get(int key) {
+            return super.getOrDefault(key, -1);
+        }
 
-    }
-    
-    public int get(int key) {
+        public void put(int key, int value) {
+            super.put(key, value);
+        }
 
-    }
-    
-    public void put(int key, int value) {
-
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > capacity;
     }
 }
 
@@ -90,4 +100,5 @@ class LRUCache {
  * obj.put(key,value);
  */
 // @lc code=end
+}
 
