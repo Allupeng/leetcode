@@ -1,16 +1,16 @@
 #
-# @lc app=leetcode.cn id=1 lang=python3
+# @lc app=leetcode id=1 lang=python3
 #
 # [1] Two Sum
 #
-# https://leetcode.cn/problems/two-sum/description/
+# https://leetcode.com/problems/two-sum/description/
 #
 # algorithms
-# Easy (52.87%)
-# Likes:    17125
-# Dislikes: 0
-# Total Accepted:    4.5M
-# Total Submissions: 8.5M
+# Easy (51.29%)
+# Likes:    53852
+# Dislikes: 1788
+# Total Accepted:    11.7M
+# Total Submissions: 22.8M
 # Testcase Example:  '[2,7,11,15]\n9'
 #
 # Given an array of integers nums and an integer target, return indices of the
@@ -55,7 +55,7 @@
 # 
 # 
 # 
-# Follow-up: Can you come up with an algorithm that is less than O(n^2) time
+# Follow-up: Can you come up with an algorithm that is less than O(n^2) time
 # complexity?
 #
 
@@ -65,12 +65,13 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        m = dict()
-        for i in range(len(nums)):
-            another = m.get(target - nums[i])
-            if another is not None:
-                return [another, i]
-            m[nums[i]] = i
+        m = {}
+        for i, v in enumerate(nums):
+            another = target - v
+            if(m.get(another) is not None):
+                return [i, m[another]]
+            m[v] = i
         return [-1, -1]
+        
 # @lc code=end
 
