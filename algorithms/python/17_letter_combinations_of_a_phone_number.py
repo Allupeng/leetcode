@@ -61,19 +61,18 @@ class Solution:
         if not digits:
             return []
         digit_map = { '2' :"abc", '3':"def", '4':"ghi", '5':"jkl", '6':"mno", '7':"pqrs", '8':"tuv", '9':"wxyz"}
-        result = []
-        self.backtrace(digits, "", len(digits), result, digit_map)
-        return result
+        res = []
+        self.backtrace(digit_map, "", 0, digits, res)
+        return res
 
-    def backtrace(self, next_digits: str, cur_digits: str, total_len: int, result: List[str], digit_map: dict):
-        if len(cur_digits) == total_len:
-            result.append(cur_digits)
+    def backtrace(self, digit_map, cur_str, index, digits, res):
+        if len(cur_str) == len(digits):
+            res.append(cur_str)
             return
-        digit = digit_map[next_digits[0]]
-        for i in range(len(digit)):
-            cur_digits = cur_digits + digit[i]
-            self.backtrace(next_digits[1:], cur_digits, total_len, result, digit_map)
-            cur_digits = cur_digits[:-1]
-
+        chars = digit_map[digits[index]]
+        for i in range(len(chars)):
+            self.backtrace(digit_map, cur_str + chars[i], index + 1, digits, res)
+            
+        
 # @lc code=end
 

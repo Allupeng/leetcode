@@ -66,27 +66,28 @@ from typing import List
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        result = []
         nums.sort()
+        res = []
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
-            left, right = i + 1, len(nums) - 1
-            while left < right:
-                sum = nums[i] + nums[left]
-                if sum + nums[right] == 0:
-                    result.append([nums[i], nums[left], nums[right]])
-                    while left < right and nums[left] == nums[left + 1]:
-                        left = left + 1
-                    while left < right and nums[right] == nums[right - 1]:
-                        right = right - 1
-                    left = left + 1
-                    right = right - 1
-                elif sum + nums[right] > 0:
-                    right = right - 1
+            l = i + 1
+            r = len(nums) - 1
+            while l < r:
+                sum_il = nums[i] + nums[l]
+                if sum_il + nums[r] == 0:
+                    res.append([nums[i], nums[l], nums[r]])
+                    while l < r and nums[l] == nums[l + 1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r - 1]:
+                        r -= 1
+                    l += 1
+                    r -= 1
+                elif sum_il + nums[r] < 0:
+                    l += 1
                 else:
-                    left = left + 1
-        return result
-                
+                    r -= 1
+        return res
+            
 # @lc code=end
 

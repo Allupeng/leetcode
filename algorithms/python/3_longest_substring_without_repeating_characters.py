@@ -56,18 +56,16 @@
 # @lc code=start
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        # retain a slide-windows which can keep the elements not duplicate
-        max_len = 0
-        left = right = 0
-        # define two pointer left and right
+        if not s:
+            return 0
+        left = right = max_len = 0
         chars = set()
         while right < len(s):
             while s[right] in chars:
-                # remove s[left] element
                 chars.remove(s[left])
-                left = left + 1
-            chars.add(s[right])
+                left += 1
             max_len = max(max_len, right - left + 1)
+            chars.add(s[right])
             right = right + 1
         return max_len
         

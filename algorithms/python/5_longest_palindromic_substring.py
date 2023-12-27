@@ -46,30 +46,21 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         if not s:
             return ""
-        right = left = 0
-        # define dp[i][j] is a palidromic substring
-        # when dp[i+1][j-1] is a palidromic substring
-        # and dp[i] = dp[j]
+        left = right = 0
+        max_len = 0
         dp = [[False for _ in range(len(s))] for _ in range(len(s))]
-        # initial the value of dp
-        # dp[i][i] = True
-        for i in range(len(dp)):
+        for i in range(len(s)):
             dp[i][i] = True
-        # record the index of max palidromic substring
-        right = left = 0
-        max_len = 1
-        # dp[i][j] is calculate from dp[i+1][j-1], so we must calculate i + 1 to result i
-        # and calculate j - 1 to result j 
-        for i in range(len(dp) - 2, -1, -1):
-            for j in range(1, len(dp[0])):
-                # if i near j and s[i] = s[j] also true
-                if s[i] == s[j] and (i + 1 == j or dp[i + 1][j - 1]):
+        for i in range(len(s) - 2, -1, -1):
+            for j in range(1, len(s)):
+                if s[i] == s[j] and (j - i == 1 or dp[i + 1][j - 1]):
                     dp[i][j] = True
-                    if j - i + 1 > max_len:
-                        left = i
-                        right = j
-                        max_len = j - i + 1
-        return s[left : right + 1]
+                if dp[i][j] and j - i + 1 > max_len:
+                    max_len = j - i + 1
+                    left = i
+                    right = j
+        return s[left: right + 1]
+        
     
 # @lc code=end
 

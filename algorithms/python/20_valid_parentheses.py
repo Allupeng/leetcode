@@ -64,21 +64,22 @@ class Solution:
             if s[i] == '(' or s[i] == '[' or s[i] == '{':
                 stack.append(s[i])
             else:
-                if not len(stack):
+                if len(stack) == 0:
                     return False
-                left = stack.pop()
-                if not self.match(left, s[i]):
-                    return False
+                else:
+                    left = stack.pop()
+                    if not self.match(left, s[i]):
+                        return False
         return True if len(stack) == 0 else False
     
-    def match(self, left: str, right: str) -> bool:
-        if right == ')':
-            return left == '('
-        if right == ']':
-            return left == '['
-        if right == '}':
-            return left == '{'
-        return False
+    def match(self, left:str, right:str) -> bool:
+        if left == '(':
+            return right == ')'
+        elif left == '[':
+            return right == ']'
+        else:
+            return right == '}' 
+
 
         
 # @lc code=end

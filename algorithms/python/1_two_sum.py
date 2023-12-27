@@ -66,12 +66,11 @@ from typing import List
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         m = {}
-        for i, v in enumerate(nums):
+        for i,v in enumerate(nums):
             another = target - v
-            if(m.get(another) is not None):
-                return [i, m[another]]
+            if another in m:
+                return [m[another], i]
             m[v] = i
         return [-1, -1]
-        
 # @lc code=end
 

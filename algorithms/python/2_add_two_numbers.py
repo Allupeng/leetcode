@@ -69,17 +69,20 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = ListNode()
         cur = dummy
-        val, carry = 0, 0
-        while l1 is not None or l2 is not None :
-            val1 = 0 if l1 is None else l1.val
-            val2 = 0 if l2 is None else l2.val
-            val = (val1 + val2 + carry) % 10
-            carry = (val1 + val2 + carry) // 10
-            node = ListNode(val)
-            cur.next = node
+        carry = value = 0
+        while l1 or l2:
+            v1 = 0 if not l1 else l1.val
+            v2 = 0 if not l2 else l2.val
+            v = v1 + v2 + carry
+            value = v % 10
+            carry = v // 10
+            node = ListNode(value)
+            cur.next = node 
             cur = node
-            if l1 is not None: l1 = l1.next
-            if l2 is not None: l2 = l2.next
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
         if carry != 0:
             cur.next = ListNode(carry)
         return dummy.next

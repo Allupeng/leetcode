@@ -59,19 +59,16 @@ from typing import List
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        # define a two pointers left and right
-        # the left point to 0
-        # the right point to len(height - 1)
         left, right = 0, len(height) - 1
-        max_area = 0
+        area = 0
         while left < right:
             min_height = min(height[left], height[right])
-            max_area = max(max_area, (right - left) * min_height)
-            if height[left] < height[right]:
-                left = left + 1
+            area = max(area, min_height * (right - left))
+            if height[left] <= height[right]:
+                left += 1
             else:
-                right = right - 1
-        return max_area
-        
+                right -= 1
+        return area
+
 # @lc code=end
 

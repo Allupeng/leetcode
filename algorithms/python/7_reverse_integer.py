@@ -54,16 +54,16 @@
 # @lc code=start
 class Solution:
     def reverse(self, x: int) -> int:
-        netgative = x < 0
-        x = abs(x)
         result = 0
-        while x != 0:
-            pop = x % 10
-            x //= 10
-            result = result * 10 + pop
-        if result < pow(-2, 31) or result > (pow(2,31) - 1):
-            return 0
+        negative = True if x < 0 else False
+        n = abs(x)
+        while n != 0:
+            mod = n % 10
+            result = result * 10 + mod
+            n //= 10
+        if -2147483648 <= result <= 2147483647:
+            return result if not negative else -result
         else:
-            return  -result if netgative else result
+            return 0 
 # @lc code=end
 
