@@ -1,16 +1,18 @@
+package leetcode
+
 /*
- * @lc app=leetcode.cn id=1 lang=golang
+ * @lc app=leetcode id=1 lang=golang
  *
  * [1] Two Sum
  *
- * https://leetcode.cn/problems/two-sum/description/
+ * https://leetcode.com/problems/two-sum/description/
  *
  * algorithms
- * Easy (53.13%)
- * Likes:    18158
- * Dislikes: 0
- * Total Accepted:    5.1M
- * Total Submissions: 9.5M
+ * Easy (51.55%)
+ * Likes:    54448
+ * Dislikes: 1831
+ * Total Accepted:    12M
+ * Total Submissions: 23.2M
  * Testcase Example:  '[2,7,11,15]\n9'
  *
  * Given an array of integers nums and an integer target, return indices of the
@@ -58,17 +60,16 @@
  * Follow-up: Can you come up with an algorithm that is less than O(n^2) time
  * complexity?
  */
-package leetcode
 
 // @lc code=start
 func twoSum(nums []int, target int) []int {
 	m := make(map[int]int)
-	for i := 0; i < len(nums); i++ {
-		another := target - nums[i]
-		if _, ok := m[another]; ok {
-			return []int{m[another], i}
+	for index, value := range nums {
+		another := target - value
+		if _, exists := m[another]; exists {
+			return []int{m[another], index}
 		}
-		m[nums[i]] = i
+		m[value] = index
 	}
 	return []int{-1, -1}
 }
