@@ -1,4 +1,4 @@
-package leetcode
+package _001_TwoSum
 
 /*
  * @lc app=leetcode id=1 lang=golang

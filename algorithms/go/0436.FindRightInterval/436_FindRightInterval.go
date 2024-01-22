@@ -1,4 +1,4 @@
-package leetcode
+package _436_FindRightInterval
 
 import "sort"
 

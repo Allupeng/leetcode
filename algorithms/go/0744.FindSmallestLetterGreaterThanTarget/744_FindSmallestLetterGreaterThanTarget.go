@@ -1,4 +1,4 @@
-package leetcode
+package _744_FindSmallestLetterGreaterThanTarget
 
 /*
  * @lc app=leetcode id=744 lang=golang

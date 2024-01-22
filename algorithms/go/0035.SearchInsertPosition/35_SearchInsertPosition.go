@@ -1,4 +1,4 @@
-package leetcode
+package _035_SearchInsertPosition
 
 /*
  * @lc app=leetcode id=35 lang=golang

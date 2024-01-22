@@ -1,4 +1,4 @@
-package leetcode
+package _034_FindFirstAndLastPositionOfElementInSortedArray
 
 /*
  * @lc app=leetcode id=34 lang=golang

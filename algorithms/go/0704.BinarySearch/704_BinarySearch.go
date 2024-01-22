@@ -1,4 +1,4 @@
-package leetcode
+package _704_BinarySearch
 
 /*
  * @lc app=leetcode id=704 lang=golang

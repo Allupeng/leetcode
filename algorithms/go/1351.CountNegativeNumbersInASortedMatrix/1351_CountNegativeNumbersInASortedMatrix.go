@@ -1,4 +1,4 @@
-package leetcode
+package _351_CountNegativeNumbersInASortedMatrix
 
 /*
  * @lc app=leetcode id=1351 lang=golang

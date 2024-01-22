@@ -4,4 +4,4 @@ out
 leetcode.iml
 .vscode
 go.mod
-algorithms/go/*_test.go
+*_test.go
