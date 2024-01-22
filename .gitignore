@@ -4,4 +4,3 @@ out
 leetcode.iml
 .vscode
 go.mod
-*_test.go
