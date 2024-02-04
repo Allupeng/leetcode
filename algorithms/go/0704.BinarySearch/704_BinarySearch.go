@@ -67,3 +67,85 @@ func search(nums []int, target int) int {
 }
 
 // @lc code=end
+
+func basicBinarySearch(nums []int, target int) int {
+	lo, hi := 0, len(nums)-1
+	for lo <= hi {
+		mid := (lo + hi) / 2 //may cause integer overflow
+		if target == nums[mid] {
+			return mid
+		} else if target < nums[mid] {
+			hi = mid - 1
+		} else {
+			lo = mid + 1
+		}
+	}
+	return -1
+}
+
+func roundDownBinarySearch(nums []int, target int) int {
+	lo, hi := 0, len(nums)-1
+	for lo <= hi {
+		mid := lo + (hi-lo)>>1 //avoid integer overflow
+		if target == nums[mid] {
+			return mid
+		} else if target < nums[mid] {
+			hi = mid - 1
+		} else {
+			lo = mid + 1
+		}
+	}
+	return -1
+}
+
+func roundUpBinarySearch(nums []int, target int) int {
+	lo, hi := 0, len(nums)-1
+	for lo <= hi {
+		mid := lo + (hi-lo+1)>>1 //avoid integer overflow
+		if target == nums[mid] {
+			return mid
+		} else if target < nums[mid] {
+			hi = mid - 1
+		} else {
+			lo = mid + 1
+		}
+	}
+	return -1
+}
+
+func roundDownBinarySearchWithoutComparison(nums []int, target int) int {
+	lo, hi := 0, len(nums)-1
+	for lo < hi {
+		mid := lo + (hi-lo)>>1
+		// left shrink
+		if target <= nums[mid] {
+			hi = mid
+		} else {
+			lo = mid + 1
+		}
+	}
+	// finally lo == hi
+	if nums[lo] == target {
+		return lo
+	} else {
+		return -1
+	}
+}
+
+func roundUpBinarySearchWithoutComparison(nums []int, target int) int {
+	lo, hi := 0, len(nums)-1
+	for lo < hi {
+		mid := lo + (hi-lo+1)>>1
+		if target < nums[mid] {
+			hi = mid - 1
+		} else {
+			// right shrink
+			lo = mid
+		}
+	}
+	// finally lo == hi
+	if nums[lo] == target {
+		return lo
+	}
+	return -1
+}

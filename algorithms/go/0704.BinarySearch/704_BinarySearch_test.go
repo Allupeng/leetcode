@@ -20,4 +20,39 @@ func TestBinarySearch(t *testing.T) {
 			t.Errorf("search(%v, %d) = %d, want %d", test.nums, test.target, got, test.want)
 		}
 	}
+
+	for _, test := range tests {
+		got := basicBinarySearch(test.nums, test.target)
+		if got != test.want {
+			t.Errorf("search(%v, %d) = %d, want %d", test.nums, test.target, got, test.want)
+		}
+	}
+
+	for _, test := range tests {
+		got := roundDownBinarySearch(test.nums, test.target)
+		if got != test.want {
+			t.Errorf("search(%v, %d) = %d, want %d", test.nums, test.target, got, test.want)
+		}
+	}
+
+	for _, test := range tests {
+		got := roundUpBinarySearch(test.nums, test.target)
+		if got != test.want {
+			t.Errorf("search(%v, %d) = %d, want %d", test.nums, test.target, got, test.want)
+		}
+	}
+
+	for _, test := range tests {
+		got := roundDownBinarySearchWithoutComparison(test.nums, test.target)
+		if got != test.want {
+			t.Errorf("search(%v, %d) = %d, want %d", test.nums, test.target, got, test.want)
+		}
+	}
+
+	for _, test := range tests {
+		got := roundUpBinarySearchWithoutComparison(test.nums, test.target)
+		if got != test.want {
+			t.Errorf("search(%v, %d) = %d, want %d", test.nums, test.target, got, test.want)
+		}
+	}
 }

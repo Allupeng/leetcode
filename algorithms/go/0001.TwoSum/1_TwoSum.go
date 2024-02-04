@@ -15,7 +15,7 @@ package _001_TwoSum
  * Total Submissions: 23.2M
  * Testcase Example:  '[2,7,11,15]\n9'
  *
- * Given an array of integers nums and an integer target, return indices of the
+ * Given an array of integers nums and an integer target, return indices of the
  * two numbers such that they add up to target.
  *
  * You may assume that each input would have exactly one solution, and you may
@@ -57,7 +57,7 @@ package _001_TwoSum
  *
  *
  *
- * Follow-up: Can you come up with an algorithm that is less than O(n^2) time
+ * Follow-up:Can you come up with an algorithm that is less than O(n^2) time
  * complexity?
  */
 
