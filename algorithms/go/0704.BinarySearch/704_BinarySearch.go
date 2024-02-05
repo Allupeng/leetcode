@@ -8,11 +8,11 @@ package _704_BinarySearch
  * https://leetcode.com/problems/binary-search/description/
  *
  * algorithms
- * Easy (57.01%)
- * Likes:    11348
+ * Easy (57.09%)
+ * Likes:    11399
  * Dislikes: 233
  * Total Accepted:    2.2M
- * Total Submissions: 3.8M
+ * Total Submissions: 3.9M
  * Testcase Example:  '[-1,0,3,5,9,12]\n9'
  *
  * Given an array of integers nums which is sorted in ascending order, and an
@@ -53,15 +53,16 @@ package _704_BinarySearch
 // @lc code=start
 func search(nums []int, target int) int {
 	lo, hi := 0, len(nums)-1
-	for lo <= hi {
-		mid := lo + (hi-lo)>>1
-		if target < nums[mid] {
-			hi = mid - 1
-		} else if target > nums[mid] {
-			lo = mid + 1
+	for lo < hi {
+		mid := lo + ((hi - lo) >> 1)
+		if target <= nums[mid] {
+			hi = mid
 		} else {
-			return mid
+			lo = mid + 1
 		}
+	}
+	if nums[lo] == target {
+		return lo
 	}
 	return -1
 }

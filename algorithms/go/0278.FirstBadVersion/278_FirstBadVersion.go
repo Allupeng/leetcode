@@ -8,9 +8,9 @@ package _278_FirstBadVersion
  * https://leetcode.com/problems/first-bad-version/description/
  *
  * algorithms
- * Easy (44.06%)
- * Likes:    8197
- * Dislikes: 3247
+ * Easy (44.12%)
+ * Likes:    8219
+ * Dislikes: 3252
  * Total Accepted:    1.6M
  * Total Submissions: 3.7M
  * Testcase Example:  '5\n4'
@@ -35,8 +35,8 @@ package _278_FirstBadVersion
  * Output: 4
  * Explanation:
  * call isBadVersion(3) -> false
- * call isBadVersion(5) -> true
- * call isBadVersion(4) -> true
+ * call isBadVersion(5) -> true
+ * call isBadVersion(4) -> true
  * Then 4 is the first bad version.
  *
  *
@@ -67,14 +67,10 @@ package _278_FirstBadVersion
 
 func firstBadVersion(n int) int {
 	lo, hi := 1, n
-	for lo <= hi {
-		mid := lo + (hi-lo)>>1
+	for lo < hi {
+		mid := lo + ((hi - lo) >> 1)
 		if isBadVersion(mid) {
-			if mid-1 >= 1 && !isBadVersion(mid-1) {
-				return mid
-			}
-			// find the last bad version
-			hi = mid - 1
+			hi = mid
 		} else {
 			lo = mid + 1
 		}
@@ -83,6 +79,7 @@ func firstBadVersion(n int) int {
 }
 
 // @lc code=end
+
 func isBadVersion(n int) bool {
 	//fake function
 	return n >= 0

@@ -8,9 +8,9 @@ package _034_FindFirstAndLastPositionOfElementInSortedArray
  * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/
  *
  * algorithms
- * Medium (43.75%)
- * Likes:    19823
- * Dislikes: 481
+ * Medium (43.84%)
+ * Likes:    19898
+ * Dislikes: 482
  * Total Accepted:    1.9M
  * Total Submissions: 4.3M
  * Testcase Example:  '[5,7,7,8,8,10]\n8'
@@ -20,7 +20,7 @@ package _034_FindFirstAndLastPositionOfElementInSortedArray
  *
  * If target is not found in the array, return [-1, -1].
  *
- * You must write an algorithm with O(log n) runtime complexity.
+ * You must write an algorithm with O(log n) runtime complexity.
  *
  *
  * Example 1:
@@ -38,35 +38,36 @@ package _034_FindFirstAndLastPositionOfElementInSortedArray
  *
  *
  * 0 <= nums.length <= 10^5
- * -10^9 <= nums[i] <= 10^9
+ * -10^9 <= nums[i] <= 10^9
  * nums is a non-decreasing array.
- * -10^9 <= target <= 10^9
+ * -10^9 <= target <= 10^9
  *
  *
  */
 
 // @lc code=start
 func searchRange(nums []int, target int) []int {
-	first, last := findPositionOfElementsIndex(nums, target, true), findPositionOfElementsIndex(nums, target, false)
-	return []int{first, last}
+	firstIndex := findPositionOfElementsIndex(true, nums, target)
+	secondIndex := findPositionOfElementsIndex(false, nums, target)
+	return []int{firstIndex, secondIndex}
 }
 
-func findPositionOfElementsIndex(nums []int, target int, findFirst bool) int {
+func findPositionOfElementsIndex(findFirst bool, nums []int, target int) int {
 	index := -1
 	lo, hi := 0, len(nums)-1
 	for lo <= hi {
-		mid := lo + (hi-lo)>>1
-		if target < nums[mid] {
-			hi = mid - 1
-		} else if target > nums[mid] {
-			lo = mid + 1
-		} else {
+		mid := lo + ((hi - lo) >> 1)
+		if target == nums[mid] {
 			index = mid
 			if findFirst {
 				hi = mid - 1
 			} else {
 				lo = mid + 1
 			}
+		} else if target < nums[mid] {
+			hi = mid - 1
+		} else {
+			lo = mid + 1
 		}
 	}
 	return index

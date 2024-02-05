@@ -8,10 +8,10 @@ package _374_GuessNumberHigherOrLower
  * https://leetcode.com/problems/guess-number-higher-or-lower/description/
  *
  * algorithms
- * Easy (52.97%)
- * Likes:    3546
- * Dislikes: 468
- * Total Accepted:    592K
+ * Easy (53.06%)
+ * Likes:    3569
+ * Dislikes: 476
+ * Total Accepted:    600.4K
  * Total Submissions: 1.1M
  * Testcase Example:  '10\n6'
  *
@@ -78,7 +78,7 @@ package _374_GuessNumberHigherOrLower
 func guessNumber(n int) int {
 	lo, hi := 1, n
 	for lo <= hi {
-		mid := lo + (hi-lo)>>1
+		mid := lo + ((hi - lo) >> 1)
 		if guess(mid) == 0 {
 			return mid
 		} else if guess(mid) == -1 {
@@ -87,12 +87,12 @@ func guessNumber(n int) int {
 			lo = mid + 1
 		}
 	}
-	return lo
+	return -1
 }
 
 // @lc code=end
 
-// fake function
 func guess(num int) int {
+	// fake function
 	return 0
 }

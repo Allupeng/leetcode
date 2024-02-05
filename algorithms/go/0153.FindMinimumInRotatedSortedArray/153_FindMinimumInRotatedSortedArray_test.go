@@ -15,7 +15,7 @@ func TestFindMinI(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		got := findMinI(test.nums)
+		got := findMin(test.nums)
 		if got != test.want {
 			t.Errorf("findMin(%v) = %d, want %d", test.nums, got, test.want)
 		}

@@ -8,11 +8,11 @@ package _153_FindMinimumInRotatedSortedArray
  * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
  *
  * algorithms
- * Medium (49.91%)
- * Likes:    12612
- * Dislikes: 556
+ * Medium (49.97%)
+ * Likes:    12667
+ * Dislikes: 558
  * Total Accepted:    1.6M
- * Total Submissions: 3.2M
+ * Total Submissions: 3.3M
  * Testcase Example:  '[3,4,5,1,2]'
  *
  * Suppose an array of length n sorted in ascending order is rotated between 1
@@ -30,7 +30,7 @@ package _153_FindMinimumInRotatedSortedArray
  * Given the sorted rotated array nums of unique elements, return the minimum
  * element of this array.
  *
- * You must write an algorithm that runs in O(log n) time.
+ * You must write an algorithm that runs in O(log n) time.
  *
  *
  * Example 1:
@@ -73,14 +73,13 @@ package _153_FindMinimumInRotatedSortedArray
  */
 
 // @lc code=start
-
 func findMin(nums []int) int {
 	lo, hi := 0, len(nums)-1
 	for lo < hi {
 		mid := lo + (hi-lo)>>1
 		if nums[mid] > nums[hi] {
 			lo = mid + 1
-		} else {
+		} else if nums[mid] < nums[hi] {
 			hi = mid
 		}
 	}

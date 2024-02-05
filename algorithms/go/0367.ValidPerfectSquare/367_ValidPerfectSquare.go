@@ -8,10 +8,10 @@ package _367_ValidPerfectSquare
  * https://leetcode.com/problems/valid-perfect-square/description/
  *
  * algorithms
- * Easy (43.54%)
- * Likes:    4094
- * Dislikes: 297
- * Total Accepted:    564.3K
+ * Easy (43.55%)
+ * Likes:    4102
+ * Dislikes: 298
+ * Total Accepted:    569.4K
  * Total Submissions: 1.3M
  * Testcase Example:  '16'
  *
@@ -54,14 +54,14 @@ package _367_ValidPerfectSquare
 func isPerfectSquare(num int) bool {
 	lo, hi := 1, num
 	for lo <= hi {
-		mid := lo + (hi-lo)>>1
-		target := mid * mid
-		if target == num {
+		mid := lo + ((hi - lo) >> 1)
+		product := mid * mid
+		if product == num {
 			return true
-		} else if target < num {
-			lo = mid + 1
-		} else {
+		} else if num < product {
 			hi = mid - 1
+		} else {
+			lo = mid + 1
 		}
 	}
 	return false

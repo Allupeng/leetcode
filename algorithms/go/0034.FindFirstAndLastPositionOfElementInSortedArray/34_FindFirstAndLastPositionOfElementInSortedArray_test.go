@@ -20,7 +20,7 @@ func TestFindPositionOfElementsIndex(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		gotIndex := findPositionOfElementsIndex(test.nums, test.target, test.findFirst)
+		gotIndex := findPositionOfElementsIndex(test.findFirst, test.nums, test.target)
 		if gotIndex != test.wantIndex {
 			t.Errorf("findPositionOfElementsIndex(%v, %d, %t) = %d, want %d", test.nums, test.target, test.findFirst, gotIndex, test.wantIndex)
 		}

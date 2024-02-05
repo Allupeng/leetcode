@@ -8,11 +8,11 @@ package _001_TwoSum
  * https://leetcode.com/problems/two-sum/description/
  *
  * algorithms
- * Easy (51.55%)
- * Likes:    54448
- * Dislikes: 1831
- * Total Accepted:    12M
- * Total Submissions: 23.2M
+ * Easy (51.73%)
+ * Likes:    54755
+ * Dislikes: 1856
+ * Total Accepted:    12.2M
+ * Total Submissions: 23.5M
  * Testcase Example:  '[2,7,11,15]\n9'
  *
  * Given an array of integers nums and an integer target, return indices of the

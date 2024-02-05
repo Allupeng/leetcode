@@ -8,11 +8,11 @@ package _033_SearchInRotatedSortedArray
  * https://leetcode.com/problems/search-in-rotated-sorted-array/description/
  *
  * algorithms
- * Medium (40.33%)
- * Likes:    25278
- * Dislikes: 1503
+ * Medium (40.38%)
+ * Likes:    25373
+ * Dislikes: 1506
  * Total Accepted:    2.5M
- * Total Submissions: 6.2M
+ * Total Submissions: 6.3M
  * Testcase Example:  '[4,5,6,7,0,1,2]\n0'
  *
  * There is an integer array nums sorted in ascending order (with distinct
@@ -54,16 +54,14 @@ package _033_SearchInRotatedSortedArray
  */
 
 // @lc code=start
-
 func search(nums []int, target int) int {
-	// rotate the array into tow part
 	lo, hi := 0, len(nums)-1
 	for lo <= hi {
-		mid := lo + (hi-lo)>>1
-		if nums[mid] == target {
+		mid := lo + ((hi - lo) >> 1)
+		if target == nums[mid] {
 			return mid
 		}
-		// left part is sorted
+		// [lo, mid] 有序
 		if nums[lo] <= nums[mid] {
 			if nums[lo] <= target && target < nums[mid] {
 				hi = mid - 1
@@ -71,7 +69,6 @@ func search(nums []int, target int) int {
 				lo = mid + 1
 			}
 		} else {
-			// right part is sorted
 			if nums[mid] < target && target <= nums[hi] {
 				lo = mid + 1
 			} else {

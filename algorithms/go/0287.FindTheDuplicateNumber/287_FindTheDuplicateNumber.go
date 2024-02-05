@@ -8,19 +8,19 @@ package _287_FindTheDuplicateNumber
  * https://leetcode.com/problems/find-the-duplicate-number/description/
  *
  * algorithms
- * Medium (59.39%)
- * Likes:    22154
- * Dislikes: 3981
+ * Medium (59.40%)
+ * Likes:    22239
+ * Dislikes: 4053
  * Total Accepted:    1.5M
  * Total Submissions: 2.5M
  * Testcase Example:  '[1,3,4,2,2]'
  *
- * Given an array of integers nums containing n + 1 integers where each integer
+ * Given an array of integers nums containing n + 1 integers where each integer
  * is in the range [1, n] inclusive.
  *
- * There is only one repeated number in nums, return this repeated number.
+ * There is only one repeated number in nums, return this repeated number.
  *
- * You must solve the problem without modifying the array nums and uses only
+ * You must solve the problem without modifying the array nums and uses only
  * constant extra space.
  *
  *
@@ -60,27 +60,36 @@ package _287_FindTheDuplicateNumber
  */
 
 // @lc code=start
-
 func findDuplicate(nums []int) int {
-	n := len(nums) - 1
-	lo, hi := 1, n
-	for lo <= hi {
-		mid := lo + (hi-lo)>>1
-		cnt := 0
-		// count the numbers of nums which is less or equal than mid
-		for _, v := range nums {
-			if v <= mid {
-				cnt++
-			}
-		}
-		// if cnt < mid or cnt = mid,it means duplicate exists in the [mid + 1, hi]
-		if cnt <= mid {
+	/**
+	 * 1 <= n <= 10^5
+	 * nums.length == n + 1
+	 * 1 <= nums[i] <= n
+	 */
+	lo, hi := 1, len(nums)-1
+	for lo < hi {
+		mid := lo + ((hi - lo) >> 1)
+		if count(nums, mid) <= mid {
 			lo = mid + 1
 		} else {
-			hi = mid - 1
+			hi = mid
 		}
 	}
 	return lo
+}
+
+/*
+*
+count the numbers of elements which is small and equals than e
+*/
+func count(nums []int, e int) int {
+	cnt := 0
+	for _, value := range nums {
+		if value <= e {
+			cnt++
+		}
+	}
+	return cnt
 }
 
 // @lc code=end

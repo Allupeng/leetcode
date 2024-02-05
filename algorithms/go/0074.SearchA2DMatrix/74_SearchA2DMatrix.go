@@ -8,8 +8,8 @@ package _074_SearchA2DMatrix
  * https://leetcode.com/problems/search-a-2d-matrix/description/
  *
  * algorithms
- * Medium (49.62%)
- * Likes:    15147
+ * Medium (49.68%)
+ * Likes:    15198
  * Dislikes: 402
  * Total Accepted:    1.6M
  * Total Submissions: 3.3M
@@ -58,12 +58,11 @@ package _074_SearchA2DMatrix
 
 // @lc code=start
 func searchMatrix(matrix [][]int, target int) bool {
-	// start from top-right element
 	m, n := len(matrix), len(matrix[0])
 	row, col := 0, n-1
 	for row < m && col >= 0 {
 		cur := matrix[row][col]
-		if target == cur {
+		if cur == target {
 			return true
 		} else if target < cur {
 			col--

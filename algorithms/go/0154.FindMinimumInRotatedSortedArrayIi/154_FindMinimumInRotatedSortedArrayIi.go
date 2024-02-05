@@ -8,11 +8,11 @@ package _154_FindMinimumInRotatedSortedArrayIi
  * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/
  *
  * algorithms
- * Hard (43.57%)
- * Likes:    4553
- * Dislikes: 470
- * Total Accepted:    427.8K
- * Total Submissions: 981.9K
+ * Hard (43.56%)
+ * Likes:    4566
+ * Dislikes: 472
+ * Total Accepted:    430.5K
+ * Total Submissions: 988.1K
  * Testcase Example:  '[1,3,5]'
  *
  * Suppose an array of length n sorted in ascending order is rotated between 1
@@ -36,7 +36,8 @@ package _154_FindMinimumInRotatedSortedArrayIi
  * Example 1:
  * Input: nums = [1,3,5]
  * Output: 1
- * Example 2:
+ * Example 2:w
+
  * Input: nums = [2,2,2,0,1]
  * Output: 0
  *
@@ -51,8 +52,8 @@ package _154_FindMinimumInRotatedSortedArrayIi
  *
  *
  *
- * Follow up: This problem is similar to Find Minimum in Rotated Sorted Array,
- * but nums may contain duplicates. Would this affect the runtime complexity?
+ * Follow up: This problem is similar to Find Minimum in Rotated Sorted Array,
+ * but nums may contain duplicates. Would this affect the runtime complexity?
  * How and why?
  *
  *
@@ -63,13 +64,15 @@ package _154_FindMinimumInRotatedSortedArrayIi
 func findMin(nums []int) int {
 	lo, hi := 0, len(nums)-1
 	for lo < hi {
-		mid := lo + (hi-lo)>>1
+		mid := lo + ((hi - lo) >> 1)
 		if nums[mid] > nums[hi] {
 			lo = mid + 1
-		} else if nums[mid] < nums[hi] {
-			hi = mid
 		} else {
-			hi--
+			if nums[mid] < nums[hi] {
+				hi = mid
+			} else {
+				hi--
+			}
 		}
 	}
 	return nums[lo]

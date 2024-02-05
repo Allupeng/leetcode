@@ -8,9 +8,9 @@ package _69_SqrtX
  * https://leetcode.com/problems/sqrtx/description/
  *
  * algorithms
- * Easy (38.33%)
- * Likes:    7789
- * Dislikes: 4427
+ * Easy (38.39%)
+ * Likes:    7824
+ * Dislikes: 4436
  * Total Accepted:    1.8M
  * Total Submissions: 4.7M
  * Testcase Example:  '4'
@@ -30,7 +30,7 @@ package _69_SqrtX
  *
  * Input: x = 4
  * Output: 2
- * Explanation: The square root of 4 is ±2, so we return 2.
+ * Explanation: The square root of 4 is 2, so we return 2.
  *
  *
  * Example 2:
@@ -55,16 +55,17 @@ package _69_SqrtX
 func mySqrt(x int) int {
 	lo, hi := 1, x
 	for lo <= hi {
-		mid := lo + (hi-lo)>>1
-		target := mid * mid
-		if target <= x && x < (mid+1)*(mid+1) {
+		mid := lo + ((hi - lo) >> 1)
+		product := mid * mid
+		if product <= x && x < (mid+1)*(mid+1) {
 			return mid
-		} else if target < x {
+		} else if product < x {
 			lo = mid + 1
 		} else {
 			hi = mid - 1
 		}
 	}
+	// corner case
 	return 0
 }
 

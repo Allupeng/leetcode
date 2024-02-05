@@ -8,11 +8,11 @@ package _744_FindSmallestLetterGreaterThanTarget
  * https://leetcode.com/problems/find-smallest-letter-greater-than-target/description/
  *
  * algorithms
- * Easy (51.59%)
- * Likes:    4274
- * Dislikes: 2181
- * Total Accepted:    446.9K
- * Total Submissions: 866.3K
+ * Easy (51.67%)
+ * Likes:    4296
+ * Dislikes: 2182
+ * Total Accepted:    452.3K
+ * Total Submissions: 875.3K
  * Testcase Example:  '["c","f","j"]\n"a"'
  *
  * You are given an array of characters letters that is sorted in
@@ -71,13 +71,11 @@ func nextGreatestLetter(letters []byte, target byte) byte {
 		mid := lo + (hi-lo)>>1
 		if target < letters[mid] {
 			hi = mid - 1
-		} else if target > letters[mid] {
-			lo = mid + 1
-		} else {
+		} else if target >= letters[mid] {
 			lo = mid + 1
 		}
 	}
-	if lo >= len(letters) {
+	if lo == len(letters) {
 		return letters[0]
 	}
 	return letters[lo]
