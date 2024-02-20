@@ -95,5 +95,12 @@ public class _0005_LongestPalindromicSubstring {
         String s = "bb";
         Assert.assertEquals("bb", solution.longestPalindrome(s));
     }
+
+    @Test
+    public void test2(){
+        Solution solution = new Solution();
+        String s = "a";
+        Assert.assertEquals("a", solution.longestPalindrome(s));
+    }
 }
 
