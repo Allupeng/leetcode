@@ -71,17 +71,19 @@ import unittest
 # @lc code=start
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        next_greater_element = [-1] * len(nums2)
+        next_greater_element = {}
         stack = []
-        for i, cur_value in enumerate(nums2):
-            while stack and nums2[stack[-1]] < cur_value:
-                index = stack.pop()
-                next_greater_element[index] = i;
-            stack.append(i)
+        for _, cur_val in enumerate(nums2):
+            while stack and stack[-1] < cur_val:
+                prev_val = stack.pop()
+                next_greater_element[prev_val] = cur_val;
+            stack.append(cur_val)
         result = [-1] * len(nums1)
-        for i in range(len(nums1)):
-            result[i] = next_greater_element[i]
-        return result
+        for i, num in enumerate(nums1):
+            if num not in next_greater_element:
+                continue
+            result[i] = next_greater_element[num]
+        return result 
         
 # @lc code=end
 
