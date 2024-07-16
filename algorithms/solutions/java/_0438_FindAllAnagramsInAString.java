@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=438 lang=java
  *
  * [438] Find All Anagrams in a String

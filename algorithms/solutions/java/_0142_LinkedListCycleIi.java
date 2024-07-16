@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=142 lang=java
  *
  * [142] Linked List Cycle II

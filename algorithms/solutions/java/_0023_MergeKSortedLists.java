@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=23 lang=java
  *
  * [23] Merge k Sorted Lists

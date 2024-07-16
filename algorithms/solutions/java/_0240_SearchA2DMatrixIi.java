@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=240 lang=java
  *
  * [240] Search a 2D Matrix II

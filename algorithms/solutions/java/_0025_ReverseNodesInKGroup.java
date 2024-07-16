@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=25 lang=java
  *
  * [25] Reverse Nodes in k-Group

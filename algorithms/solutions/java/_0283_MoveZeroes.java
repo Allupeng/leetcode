@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=283 lang=java
  *
  * [283] Move Zeroes

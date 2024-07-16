@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=56 lang=java
  *
  * [56] Merge Intervals

@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=3 lang=java
  *
  * [3] Longest Substring Without Repeating Characters

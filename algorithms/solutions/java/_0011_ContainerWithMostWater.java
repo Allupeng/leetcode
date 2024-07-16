@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=11 lang=java
  *
  * [11] Container With Most Water

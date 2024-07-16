@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=160 lang=java
  *
  * [160] Intersection of Two Linked Lists

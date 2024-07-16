@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=41 lang=java
  *
  * [41] First Missing Positive

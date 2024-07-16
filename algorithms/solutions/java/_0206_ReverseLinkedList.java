@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=206 lang=java
  *
  * [206] Reverse Linked List

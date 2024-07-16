@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=234 lang=java
  *
  * [234] Palindrome Linked List

@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=24 lang=java
  *
  * [24] Swap Nodes in Pairs

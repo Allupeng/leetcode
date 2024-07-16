@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=53 lang=java
  *
  * [53] Maximum Subarray

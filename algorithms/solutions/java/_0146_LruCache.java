@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=146 lang=java
  *
  * [146] LRU Cache

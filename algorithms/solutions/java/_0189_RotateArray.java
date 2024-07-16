@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=189 lang=java
  *
  * [189] Rotate Array

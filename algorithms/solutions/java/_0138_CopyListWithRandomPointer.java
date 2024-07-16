@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=138 lang=java
  *
  * [138] Copy List with Random Pointer

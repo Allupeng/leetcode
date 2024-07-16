@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=48 lang=java
  *
  * [48] Rotate Image

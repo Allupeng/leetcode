@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=560 lang=java
  *
  * [560] Subarray Sum Equals K

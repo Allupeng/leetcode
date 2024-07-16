@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=49 lang=java
  *
  * [49] Group Anagrams

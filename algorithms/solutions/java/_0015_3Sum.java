@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=15 lang=java
  *
  * [15] 3Sum

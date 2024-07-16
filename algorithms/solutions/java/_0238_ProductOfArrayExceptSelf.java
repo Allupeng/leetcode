@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=238 lang=java
  *
  * [238] Product of Array Except Self

@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=128 lang=java
  *
  * [128] Longest Consecutive Sequence

@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=239 lang=java
  *
  * [239] Sliding Window Maximum

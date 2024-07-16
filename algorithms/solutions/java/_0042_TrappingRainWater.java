@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=42 lang=java
  *
  * [42] Trapping Rain Water

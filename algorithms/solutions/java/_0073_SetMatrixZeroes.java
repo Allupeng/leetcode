@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=73 lang=java
  *
  * [73] Set Matrix Zeroes

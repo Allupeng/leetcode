@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=21 lang=java
  *
  * [21] Merge Two Sorted Lists

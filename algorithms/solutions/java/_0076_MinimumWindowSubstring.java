@@ -1,4 +1,4 @@
-package hot100;/*
+ /*
  * @lc app=leetcode.cn id=76 lang=java
  *
  * [76] Minimum Window Substring

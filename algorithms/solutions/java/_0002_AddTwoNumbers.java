@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=2 lang=java
  *
  * [2] Add Two Numbers

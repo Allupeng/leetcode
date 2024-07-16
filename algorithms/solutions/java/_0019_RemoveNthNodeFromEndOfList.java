@@ -1,4 +1,4 @@
-package hot100;/*
+/*
  * @lc app=leetcode.cn id=19 lang=java
  *
  * [19] Remove Nth Node From End of List
