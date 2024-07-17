@@ -76,9 +76,9 @@
  * 
  */
 
+import java.util.HashMap;
 import java.util.Map;
 
-import hot100._0025_ReverseNodesInKGroup.ListNode;
 
 public class _0138_CopyListWithRandomPointer {
     class Node {

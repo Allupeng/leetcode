@@ -51,9 +51,8 @@
  */
 
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class _0094_BinaryTreeInorderTraversal {
       static class TreeNode {
@@ -73,18 +72,18 @@ public class _0094_BinaryTreeInorderTraversal {
         public List<Integer> inorderTraversal(TreeNode root) {
             if (root == null) return new ArrayList<>();
             List<Integer> result = new ArrayList<>();
-            Deque<TreeNode> stack = new LinkedList<>();
+            Stack<TreeNode> stack = new Stack<>();
             TreeNode cur = root;
-            while (!stack.isEmpty() || cur != null) {
-                while(cur != null){
-                    stack.offerFirst(cur);
+            while (!stack.isEmpty() || cur != null){
+                while (cur != null){
+                    stack.push(cur);
                     cur = cur.left;
                 }
-                cur = stack.pollFirst();
+                cur = stack.pop();
                 result.add(cur.val);
                 cur = cur.right;
             }
-            return result;
+            return result; 
         }
     }
 // @lc code=end
