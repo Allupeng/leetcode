@@ -7,21 +7,22 @@
 #
 
 # @lc code=start
+from collections import defaultdict
 from typing import List
 
 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        pre_sum = [0] * (len(nums) + 1)
+        s = [0] * (len(nums) + 1)
         for i in range(1, len(nums) + 1):
-            pre_sum[i] = pre_sum[i - 1] + nums[i - 1]
+            s[i] = s[i - 1] + nums[i - 1]
         
-        cnt = 0
-        for i in range(len(nums)):
-            for j in range(i + 1):
-                if k == pre_sum[i + 1] - pre_sum[j]:
-                    cnt = cnt + 1
-        
-        return cnt
+        res = 0
+        cnt = defaultdict(int)
+        cnt[0] = 1 # init the initial value
+        for sj in s[1:]:
+            res = res + cnt[sj - k]
+            cnt[sj] += 1
+        return res
 # @lc code=end
 
