@@ -19,19 +19,18 @@ class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         if not head or not head.next:
             return head
-        last = head
         cnt = 0
+        last = head
         while cnt < k:
             if not last:
                 return head
             last = last.next
             cnt += 1
-        newListNode = self.reverseListNode(head, last)
+        newListNode = self.reverseListNodes(head, last)
         head.next = self.reverseKGroup(last, k)
         return newListNode
         
-        
-    def reverseListNode(self, head: Optional[ListNode], last: Optional[ListNode]) -> Optional[ListNode]:
+    def reverseListNodes(self, head: Optional[ListNode], last: Optional[ListNode]) -> Optional[ListNode]:
         pre = None
         while head != last:
             next = head.next

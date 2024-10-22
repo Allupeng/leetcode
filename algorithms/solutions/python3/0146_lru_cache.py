@@ -7,61 +7,61 @@
 #
 
 # @lc code=start
+class LRUNode:
+  def __init__(self, key, value) -> None:
+     self.key = key
+     self.val = value
+     self.next = None
+     self.prev = None
+
 class LRUCache:
-    class LRUNode:
-      prev = next = None
-      key = value = 0
-      def __init__(self, key, value):
-         self.key = key
-         self.value = value
-    
-    head = tail = None
-    cached = None # the key is int , the value is LRUNode
-    capacity = 0
     
     def __init__(self, capacity: int):
-        self.head, self.tail = self.LRUNode(-1, -1), self.LRUNode(-1, -1)
-        self.head.next = self.tail
-        self.tail.prev = self.head
-        self.capacity = capacity
-        self.cached = {}
+      self.capacity = capacity
+      self.cached = {}
+      self.head = LRUNode(-1, -1)
+      self.tail = LRUNode(-1, -1)
+      self.head.next = self.tail
+      self.tail.prev = self.head
     
-    def addToHead(self, cur: LRUNode):
-        next = self.head.next
-        cur.next = next
-        next.prev = cur
-        cur.prev = self.head
-        self.head.next = cur
-        
-    def deleteCurNode(self, cur: LRUNode):
-        prev = cur.prev
-        next = cur.next
-        prev.next = next
-        next.prev = prev
+    def delete_cur_node(self, cur: LRUNode):
+      next = cur.next
+      prev = cur.prev
+      prev.next = next
+      next.prev = prev
+    
+    def add_to_head(self, cur: LRUNode):
+      next = self.head.next
+      self.head.next = cur
+      cur.prev = self.head
+      cur.next = next
+      next.prev = cur
 
     def get(self, key: int) -> int:
       if key not in self.cached:
         return -1
-      node = self.cached[key]
-      self.deleteCurNode(node)
-      self.addToHead(node)
-      return node.value
+      cur = self.cached[key]
+      self.delete_cur_node(cur)
+      self.add_to_head(cur)
+      return cur.val
         
 
     def put(self, key: int, value: int) -> None:
       if key not in self.cached:
-        if self.capacity <= len(self.cached):
-          deleteNode = self.tail.prev
-          self.cached.pop(deleteNode.key)
-          self.deleteCurNode(deleteNode)
-        node = self.LRUNode(key, value)
+        if len(self.cached) >= self.capacity:
+          delete_key = self.tail.prev.key
+          delete_node = self.cached[delete_key]
+          self.delete_cur_node(delete_node)
+          self.cached.pop(delete_key)
+        node = LRUNode(key, value)
         self.cached[key] = node
-        self.addToHead(node)
+        self.add_to_head(node)
       else:
         node = self.cached[key]
-        self.deleteCurNode(node)
-        node.value = value
-        self.addToHead(node)
+        self.delete_cur_node(node)
+        node.val = value
+        self.add_to_head(node)
+      
                 
 
 

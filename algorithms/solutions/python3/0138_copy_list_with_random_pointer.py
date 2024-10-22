@@ -29,6 +29,7 @@ class Solution:
             node = Node(cur.val)
             m[cur] = node
             cur = cur.next
+        
         cur = head
         while cur:
             node = m[cur]
