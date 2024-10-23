@@ -17,11 +17,12 @@ class TreeNode:
         self.right = right
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # inorder left, root, right
         if not root:
             return []
+        cur = root
         stack = []
         output = []
-        cur = root
         while cur or stack:
             while cur:
                 stack.append(cur)
@@ -30,6 +31,8 @@ class Solution:
             output.append(cur.val)
             cur = cur.right
         return output
+        
+        
             
         
 # @lc code=end

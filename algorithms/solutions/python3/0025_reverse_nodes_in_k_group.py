@@ -17,18 +17,20 @@ class ListNode:
         self.next = next
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        if not head or not head.next:
-            return head
+        if not head:
+            return None
         cnt = 0
         last = head
         while cnt < k:
             if not last:
                 return head
             last = last.next
-            cnt += 1
+            cnt = cnt + 1
+        
         newListNode = self.reverseListNodes(head, last)
         head.next = self.reverseKGroup(last, k)
         return newListNode
+        
         
     def reverseListNodes(self, head: Optional[ListNode], last: Optional[ListNode]) -> Optional[ListNode]:
         pre = None

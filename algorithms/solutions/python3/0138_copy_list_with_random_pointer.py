@@ -29,7 +29,6 @@ class Solution:
             node = Node(cur.val)
             m[cur] = node
             cur = cur.next
-        
         cur = head
         while cur:
             node = m[cur]
@@ -37,5 +36,6 @@ class Solution:
             node.random = m[cur.random] if cur.random else None
             cur = cur.next
         return m[head]
+            
 # @lc code=end
 
